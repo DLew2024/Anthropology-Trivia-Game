@@ -390,6 +390,9 @@ Office Hours: Tuesday, 2:00–3:00 pm
         
       }            
       ];
+
+        let playerNameInput;
+        let playerName = "";
       
         let backgroundMusic;
         let backgroundImg;
@@ -433,6 +436,17 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function setup() {
         createCanvas(windowWidth, windowHeight);
         textSize(16);
+
+        // Create input field
+        playerNameInput = createInput();
+        playerNameInput.position(width / 2 - 100, height / 2);
+        playerNameInput.size(200);
+        playerNameInput.attribute("placeholder", "Enter your name");
+
+        // Create a button to start the game
+        let startButton = createButton("Start Game");
+        startButton.position(width / 2 - 50, height / 2 + 40);
+        startButton.mousePressed(startGame); 
       
         // backgroundMusic.loop();
       }
@@ -452,7 +466,21 @@ Office Hours: Tuesday, 2:00–3:00 pm
         correctCount = 0;
         streakTotal = 0
         actualTotal = 0;
+        playerName = "";
       }
+
+      function startGame() {
+        // Set the player name and remove input elements
+        playerName = playerNameInput.value();
+        playerNameInput.remove();
+      
+        // Remove the "Start Game" button
+        document.querySelector('button').remove();
+
+        game.state = GameState.Level2;
+      
+      }
+      
 
       function draw() {
         background(220);
@@ -772,6 +800,22 @@ Office Hours: Tuesday, 2:00–3:00 pm
           } 
         }
       }
+
+      function saveScore() {
+        // Save the score to localStorage
+        localStorage.setItem(playerName + "_triviaScore", score);
+      }
+
+      function loadScore() {
+        // Load the score from localStorage
+        let savedScore = localStorage.getItem(playerName + "_triviaScore");
+      
+        // Check if a score exists in localStorage
+        if (savedScore !== null) {
+          score = int(savedScore);
+        }
+      }
+
       
       function keyPressed() {
         switch (game.state) {
