@@ -522,11 +522,16 @@ Office Hours: Tuesday, 2:00–3:00 pm
               console.log("The game just restarted.");
           }
       }
-            // Set the fill color with transparency (alpha value)
-            fill(150, 150, 150, 100); // Red color with alpha (transparency) set to 100
-
             // Draw a rectangular bubble shape
-            rect(windowWidth*11/12-75, windowHeight - 60, 140, 50, 100); // x, y, width, height, rounded corners
+            fill(150, 150, 150, 100); 
+            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
+            fill(150, 150, 150, 100); 
+            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+            fill(150, 150, 150, 100); 
+            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+            fill(150, 150, 150, 100); 
+            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+
             // Timer number 
             fill(255);
             textAlign(RIGHT);
@@ -627,14 +632,9 @@ Office Hours: Tuesday, 2:00–3:00 pm
               }
             }
 
-            // Set the fill color with transparency (alpha value)
-            fill(150, 150, 150, 100); // Red color with alpha (transparency) set to 100
-
-            // Draw a rectangular bubble shape
-            rect(windowWidth*11/12-75, windowHeight - 60, 140, 50, 100); // x, y, width, height, rounded corners
-            
+        
             fill(0);
-            
+
             text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
 
 
