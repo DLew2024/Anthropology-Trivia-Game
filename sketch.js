@@ -657,7 +657,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level6: "Exit Screen"
         }; 
       
-        let game = { maxTime : 0, state: GameState.Level4 }; 
+        let game = { maxTime : 0, state: GameState.Start }; 
         let timer = game.maxTime;
       
       function preload() {
@@ -699,9 +699,12 @@ Office Hours: Tuesday, 2:00–3:00 pm
         streak = 0;
         correctCount = 0;
         streakTotal = 0;
+        streakCount = 0
         actualTotal = 0;
+        longestStreak = 0;
         remainingHints = 5;
         playerName = "";
+        replays = 0;
         
       }
       
@@ -1057,7 +1060,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
                   streakCount = 0;
                 }
                 if (streakCount > longestStreak) {
-                  longestStreak = currentStreak;
+                  longestStreak = streakCount;
                   // Save longest streak to local storage
                   localStorage.setItem("longestStreak", longestStreak);
                 }
