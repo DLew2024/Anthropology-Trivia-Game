@@ -8,7 +8,6 @@
     Play Again Screen
 
     Enter Name Alert? 
-    Hints ???
     Save Score and repeat at the end.
 
   */
@@ -614,6 +613,9 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
         let backgroundMusic;
         let backgroundImg, levelBackground;
+
+        let hintButton;
+        let remainingHints;
         
         let currentQuestion = 0;
         let score = 0;
@@ -643,7 +645,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level3: "Level 3", Level3: "Level 4",
         }; 
       
-        let game = { maxTime : 0, state: GameState.Level3 }; 
+        let game = { maxTime : 0, state: GameState.Playing }; 
         let timer = game.maxTime;
       
       function preload() {
@@ -656,6 +658,14 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function setup() {
         createCanvas(windowWidth, windowHeight);
         textSize(16);
+
+        remainingHints = 5;
+
+        hintButton = createButton('Hint');
+        hintButton.position(windowWidth/10 - 110, windowHeight/2 + 355);
+        hintButton.mousePressed(showHint);
+        hintButton.size(50,25);
+        // hintButton.hide();
       
         // backgroundMusic.loop();
       }
@@ -675,11 +685,14 @@ Office Hours: Tuesday, 2:00–3:00 pm
         correctCount = 0;
         streakTotal = 0
         actualTotal = 0;
+        remainingHints = 5;
       }
 
       function draw() {
         background(220);
         fill(0);
+
+        toggleHintButton();
       
         switch(game.state) {
 
@@ -692,7 +705,8 @@ Office Hours: Tuesday, 2:00–3:00 pm
             text("Anthropology Trivia", windowWidth/2, windowHeight/2);
             textSize(20);
             text("Press any key to continue", windowWidth/2, (windowHeight/2)+40);
-      
+            
+
           break;
 
           case GameState.LevelIntro:
@@ -909,11 +923,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           textSize(20);
           text(`Current Score: ${actualTotal}`, windowWidth/2, (windowHeight/2)+80); 
           text("Press any key to continue ", windowWidth/2, (windowHeight/2)+165);
-      
-          /*
-      Current score number in a transparent bubble 
-          */
-      
+    
           break;
       
           case GameState.Level3:
@@ -1054,5 +1064,25 @@ Office Hours: Tuesday, 2:00–3:00 pm
             game.state = GameState.Playing;
           
           break;
+        }  
+      }
+
+      function showHint() {
+        if (remainingHints > 0) {
+          alert(questions[currentQuestion].hint);
+          remainingHints--;
+        } else {
+          alert("No more hints left!");
         }
       }
+
+      function toggleHintButton() {
+
+      switch(game.state) {
+        case GameState.Playing :
+            hintButton.show() // Show the hint button
+        break;
+        default :
+            hintButton.hide() 
+      }
+    }
