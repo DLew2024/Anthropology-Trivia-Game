@@ -422,7 +422,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level3: "Level 3", Level3: "Level 4",
         }; 
       
-        let game = { maxTime : 0, state: GameState.Start }; 
+        let game = { maxTime : 0, state: GameState.Playing }; 
         let timer = game.maxTime;
       
       function preload() {
@@ -522,6 +522,11 @@ Office Hours: Tuesday, 2:00–3:00 pm
               console.log("The game just restarted.");
           }
       }
+            // Set the fill color with transparency (alpha value)
+            fill(150, 150, 150, 100); // Red color with alpha (transparency) set to 100
+
+            // Draw a rectangular bubble shape
+            rect(windowWidth*11/12-75, windowHeight - 60, 140, 50, 100); // x, y, width, height, rounded corners
             // Timer number 
             fill(255);
             textAlign(RIGHT);
@@ -621,8 +626,18 @@ Office Hours: Tuesday, 2:00–3:00 pm
                   break;
               }
             }
+
+            // Set the fill color with transparency (alpha value)
+            fill(150, 150, 150, 100); // Red color with alpha (transparency) set to 100
+
+            // Draw a rectangular bubble shape
+            rect(windowWidth*11/12-75, windowHeight - 60, 140, 50, 100); // x, y, width, height, rounded corners
+            
+            fill(0);
             
             text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
+
+
       
       
       
