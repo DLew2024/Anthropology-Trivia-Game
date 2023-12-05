@@ -7,6 +7,8 @@
     Previous score screen
     Play Again Screen
     Save Score and repeat at the end.
+    if timer less than= 10 chnage color of bar and number 
+    
 
   */
 
@@ -627,7 +629,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
         let levelCounter = -1; //
         let gameRestarted, gameStarted;
         
-        
         //Reset times --------------------------------------------------------------------------------------------------------------------------
       
         let timerTime = 7200; // 1800
@@ -641,9 +642,15 @@ Office Hours: Tuesday, 2:00–3:00 pm
         // let extraCanvas;
       
         const GameState = {
-          Start: "Start", Playing: "Playing", GameOver: "GameOver", 
-          LevelIntro: "Intro", Level2: "Level 2", 
-          Level3: "Level 3", Level3: "Level 4",
+          Start: "Start",
+          LevelIntro: "Intro", 
+          Playing: "Playing",
+          Level2: "Doing worst than I thought Transition.",
+          Level3: "Sunset Transition", 
+          GameOver: "GameOver", 
+          Level4: "Lifetime stats", 
+          Level5: "Play again",
+          Level6: "Exit Screen"
         }; 
       
         let game = { maxTime : 0, state: GameState.Start }; 
@@ -668,7 +675,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
         hintButton.size(50,25);
         // hintButton.hide();
 
-      
         // backgroundMusic.loop();
       }
       
@@ -685,9 +691,8 @@ Office Hours: Tuesday, 2:00–3:00 pm
         score = 0; 
         streak = 0;
         correctCount = 0;
-        streakTotal = 0
+        streakTotal = 0;
         actualTotal = 0;
-
         remainingHints = 5;
         playerName = "";
         
@@ -695,6 +700,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
 
       function draw() {
+
         background(220);
         fill(0);
 
@@ -704,15 +710,14 @@ Office Hours: Tuesday, 2:00–3:00 pm
 
           case GameState.Start:
       
-            background(0);
-            fill(255);
-            textSize(50);
-            textAlign(CENTER);
-            text("Anthropology Trivia", windowWidth/2, windowHeight/2);
-            textSize(20);
-            text("Press any key to continue", windowWidth/2, (windowHeight/2)+40);
-            
-
+          background(0);
+          fill(255);
+          textSize(50);
+          textAlign(CENTER);
+          text("Anthropology Trivia", windowWidth/2, windowHeight/2);
+          textSize(20);
+          text("Press any key to continue", windowWidth/2, (windowHeight/2)+40);
+          
           break;
 
           case GameState.LevelIntro:
@@ -731,85 +736,85 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
           text("Now press any key to start", windowWidth/2, (windowHeight/2)+105);
 
-          
-      
           break;
       
           case GameState.Playing:
-            background(220);
-            // Transparent Background 
-            fill(0, 0, 0, 220);
-            rect(windowWidth/2-465, windowHeight/2-315, 900, 50, 50);
-            // Bar Background
-            fill(225);
-            rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
-            // Black bar outline
-            strokeWeight(2);
-            stroke(0);
-            rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
-            if (timerDuration > 0) {
-              timerDuration -= 1;
-              timerBarWidth = map(timerDuration, 0, uneditedTimerDuration, 0, 800);
-            }
-            // Moving white bar
-            fill(255);
-            rect(windowWidth/2-400, windowHeight/2-300, timerBarWidth, 20, 20);
-            //Hourglass
-            image(backgroundImg, windowWidth/2-550, windowHeight/2-340, 100, 105);
-            // Starts / Keeps game flowing
+
+          background(220);
+          // Transparent Background 
+          fill(0, 0, 0, 220);
+          rect(windowWidth/2-465, windowHeight/2-315, 900, 50, 50);
+          // Bar Background
+          fill(225);
+          rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
+          // Black bar outline
+          strokeWeight(2);
+          stroke(0);
+          rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
+          if (timerDuration > 0) {
+            timerDuration -= 1;
+            timerBarWidth = map(timerDuration, 0, uneditedTimerDuration, 0, 800);
+          }
+          // Moving white bar
+          fill(255);
+          rect(windowWidth/2-400, windowHeight/2-300, timerBarWidth, 20, 20);
+          //Hourglass
+          image(backgroundImg, windowWidth/2-550, windowHeight/2-340, 100, 105);
+          // Starts / Keeps game flowing
           if ((levelCounter == -1 && !gameRestarted) || (levelCounter == 0 && !gameRestarted)) {
               gameRestarted = true;
-          if (levelCounter == -1) {
-              console.log("The game just started.");
-              levelCounter++;
-          } else if (levelCounter == 0) {
-              reset();
-              console.log("The game just restarted.");
+              if (levelCounter == -1) {
+                console.log("The game just started.");
+                levelCounter++;
+              } else if (levelCounter == 0) {
+                reset();
+                console.log("The game just restarted.");
+              }
           }
-      }
-            // Draw a rectangular bubble shape
-            fill(150, 150, 150, 100); 
-            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
-            fill(150, 150, 150, 100); 
-            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
-            fill(150, 150, 150, 100); 
-            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
-            fill(150, 150, 150, 100); 
-            rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          // Draw a rectangular bubble shape
+          fill(150, 150, 150, 100); 
+          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
+          fill(150, 150, 150, 100); 
+          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          fill(150, 150, 150, 100); 
+          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          fill(150, 150, 150, 100); 
+          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
 
-            // Timer number 
-            fill(255);
-            textAlign(RIGHT);
-            text("" + timer, windowWidth/2-415, windowHeight/2-280);
-            if (frameCount % 60 == 0 && timer >= 0) { timer++; }
-            textAlign(LEFT);
-            // Questions Text
+          // Timer number 
+          fill(255);
+          textAlign(RIGHT);
+          text("" + timer, windowWidth/2-415, windowHeight/2-280);
+          if (frameCount % 60 == 0 && timer >= 0) { timer++; }
+          textAlign(LEFT);
+          // Questions Text
+          fill(0);
+          textSize(30);
+          strokeWeight(0);
+          fill(0);
+          // Old circle that used to be in the middle
+          // circle(windowWidth/2, windowHeight/2, 10);
+          text(questions[currentQuestion].question, 20, windowHeight/4+90-50);
+          
+          // Options Text
+          for (let i = 0; i < questions[currentQuestion].options.length; i++) {
+            // Draws a rectangle for an visual rep of option
+            stroke(0);
+            strokeWeight(4);
+            fill(255, 255, 255);
+            // Location 
+            let x = 50;
+            let y = (windowHeight/4)+65+80-30 + i * 30;
+            let width = windowWidth/2+100;
+            let height = 30;
+            rect(x, y, width, height);
+            // Ends here
+            // Text reset
             fill(0);
-            textSize(30);
             strokeWeight(0);
-            fill(0);
-            // Old circle that used to be in the middle
-            // circle(windowWidth/2, windowHeight/2, 10);
-            text(questions[currentQuestion].question, 20, windowHeight/4+90-50);
-            // Options Text
-            for (let i = 0; i < questions[currentQuestion].options.length; i++) {
-              // Draws a rectangle for an visual rep of option
-              stroke(0);
-              strokeWeight(4);
-              fill(255, 255, 255);
-              // Location 
-              let x = 50;
-              let y = (windowHeight/4)+65+80-30 + i * 30;
-              let width = windowWidth/2+100;
-              let height = 30;
-              rect(x, y, width, height);
-              // Ends here
-              // Text reset
-              fill(0);
-              strokeWeight(0);
-              // Options for text (Answer choices)
-              text(`${i + 1}. ${questions[currentQuestion].options[i]}`, 20, (windowHeight/4)+90+80-30 + i * 30);
-            }
+            // Options for text (Answer choices)
+            text(`${i + 1}. ${questions[currentQuestion].options[i]}`, 20, (windowHeight/4)+90+80-30 + i * 30);
+          }
             
       
       
@@ -846,41 +851,41 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
       
       
-            if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
-              switch (levelCounter) {
-                case -1:
-                  levelCounter++;
-                  game.state = GameState.LevelIntro;
-                  console.log(levelCounter);
-                  break;
-                case 0:
-                  levelCounter++;
-                  game.state = GameState.Playing;
-                  console.log(levelCounter);
-                  break;
-                case 1: // old 0
-                  gameRestarted = false;
-                  game.state = GameState.Level2;
-                  levelCounter++;
-                  console.log(levelCounter);
-                  break;
-                case 2:
-                  game.state = GameState.Level3;
-                  levelCounter++;
-                  console.log(levelCounter);
-                  break;
-                case 3:
-                  game.state = GameState.GameOver
-                  levelCounter = 1; 
-                  console.log(levelCounter);           
-                  break;
-              }
+          if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
+            switch (levelCounter) {
+              case -1:
+                levelCounter++;
+                game.state = GameState.LevelIntro;
+                console.log(levelCounter);
+                break;
+              case 0:
+                levelCounter++;
+                game.state = GameState.Playing;
+                console.log(levelCounter);
+                break;
+              case 1: // old 0
+                gameRestarted = false;
+                game.state = GameState.Level2;
+                levelCounter++;
+                console.log(levelCounter);
+                break;
+              case 2:
+                game.state = GameState.Level3;
+                levelCounter++;
+                console.log(levelCounter);
+                break;
+              case 3:
+                game.state = GameState.GameOver
+                levelCounter = 1; 
+                console.log(levelCounter);           
+                break;
             }
+          }
 
-        
-            fill(0);
+      
+          fill(0);
 
-            text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
+          text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
 
 
       
@@ -937,7 +942,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
           case GameState.Level3:
           background(levelBackground);
           fill(255);
-          // image(levelBackground, windowWidth/2 - 500, 0);
           textAlign(CENTER);
           textSize(50);
           text("Enjoy the view of this sunset because", windowWidth/2, (windowHeight/2)-80);
@@ -964,32 +968,21 @@ Office Hours: Tuesday, 2:00–3:00 pm
           text("Total: ", windowWidth/2-500, windowHeight/2+190);/* Big font */ textAlign(RIGHT); text(`${actualTotal}`, windowWidth/2+510, windowHeight/2+190); textAlign(CENTER);
           
           break;
-        }
 
+          case GameState.Level4: // Lifetime stats
+
+          break;
+
+          case GameState.Level5: // Lifetime stats
+
+          break;
+
+          case GameState.Level6: // Lifetime stats
+
+          break;
+        }
       }
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       function mouseClicked() {
             // Check if an option is clicked
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
@@ -1007,10 +1000,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
                 } 
                 else {
                   streak = 0;
-                  // console.log("Current Reset Amount: " + streak);
                 }
-                // console.log("Current total score is " + (score + streakTotal));
-      
                 // Move to the next question
                 actualTotal = score + streakTotal; 
                 currentQuestion++;
@@ -1088,12 +1078,11 @@ Office Hours: Tuesday, 2:00–3:00 pm
       }
 
       function toggleHintButton() {
-
-      switch(game.state) {
-        case GameState.Playing :
-            hintButton.show() // Show the hint button
-        break;
-        default :
+        switch(game.state) {
+          case GameState.Playing :
+            hintButton.show() 
+          break;
+          default :
             hintButton.hide() 
       }
     }
@@ -1101,7 +1090,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
     function getPlayerName() {
       playerName = prompt("Enter your name: Trivia Traveler");
       if (!playerName) {
-          // If the user clicks cancel or enters an empty name, ask again
           getPlayerName();
       }
   }
