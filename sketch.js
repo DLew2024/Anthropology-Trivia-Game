@@ -659,7 +659,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function setup() {
         createCanvas(windowWidth, windowHeight);
         textSize(16);
-
+        
         remainingHints = 5;
 
         hintButton = createButton('Hint');
@@ -667,6 +667,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
         hintButton.mousePressed(showHint);
         hintButton.size(50,25);
         // hintButton.hide();
+
       
         // backgroundMusic.loop();
       }
@@ -686,9 +687,24 @@ Office Hours: Tuesday, 2:00–3:00 pm
         correctCount = 0;
         streakTotal = 0
         actualTotal = 0;
+
         remainingHints = 5;
         playerName = "";
+        
       }
+
+      function startGame() {
+        // Set the player name and remove input elements
+        playerName = playerNameInput.value();
+        playerNameInput.remove();
+      
+        // Remove the "Start Game" button
+        document.querySelector('button').remove();
+
+        game.state = GameState.Level2;
+      
+      }
+      
 
       function draw() {
         background(220);
@@ -1116,3 +1132,4 @@ Office Hours: Tuesday, 2:00–3:00 pm
       score = int(savedScore);
     }
   }
+
