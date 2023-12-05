@@ -1101,3 +1101,18 @@ Office Hours: Tuesday, 2:00–3:00 pm
           getPlayerName();
       }
   }
+
+  function saveScore() {
+    // Save the score to localStorage
+    localStorage.setItem(playerName + "_triviaScore", score);
+  }
+
+  function loadScore() {
+    // Load the score from localStorage
+    let savedScore = localStorage.getItem(playerName + "_triviaScore");
+
+    // Check if a score exists in localStorage
+    if (savedScore !== null) {
+      score = int(savedScore);
+    }
+  }
