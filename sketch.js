@@ -6,8 +6,6 @@
 
     Previous score screen
     Play Again Screen
-
-    Enter Name Alert? 
     Save Score and repeat at the end.
 
   */
@@ -616,6 +614,8 @@ Office Hours: Tuesday, 2:00–3:00 pm
 
         let hintButton;
         let remainingHints;
+
+        let playerName;
         
         let currentQuestion = 0;
         let score = 0;
@@ -626,6 +626,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
         let currentLevel = 1;
         let levelCounter = -1; //
         let gameRestarted, gameStarted;
+        
         
         //Reset times --------------------------------------------------------------------------------------------------------------------------
       
@@ -645,7 +646,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level3: "Level 3", Level3: "Level 4",
         }; 
       
-        let game = { maxTime : 0, state: GameState.Playing }; 
+        let game = { maxTime : 0, state: GameState.Start }; 
         let timer = game.maxTime;
       
       function preload() {
@@ -686,6 +687,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
         streakTotal = 0
         actualTotal = 0;
         remainingHints = 5;
+        playerName = "";
       }
 
       function draw() {
@@ -717,13 +719,15 @@ Office Hours: Tuesday, 2:00–3:00 pm
           textAlign(CENTER);
           text("I AM THE MASTER OF ANTHROPOLOGY", windowWidth/2, windowHeight/2-60);
           textSize(20);
-          text("Do you really think YOU can beat me??", windowWidth/2, (windowHeight/2)-20);
+          text("Do you really think YOU can beat me?? " + playerName, windowWidth/2, (windowHeight/2)-20);
       
           text("HAAA HAAA Try me !!! HAAA HAA", windowWidth/2, (windowHeight/2)+20);
           
           text("Lets see if you can even beat this score: 2000", windowWidth/2, (windowHeight/2)+55);
       
           text("Now press any key to start", windowWidth/2, (windowHeight/2)+105);
+
+          
       
           break;
       
@@ -957,6 +961,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           
           break;
         }
+
       }
       
       
@@ -1027,9 +1032,11 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function keyPressed() {
         switch (game.state) {
           case GameState.Start :
-      
+          
+
             game.state = GameState.LevelIntro;
             // backgroundMusic.play();
+            getPlayerName();
       
           break;
 
@@ -1072,7 +1079,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           alert(questions[currentQuestion].hint);
           remainingHints--;
         } else {
-          alert("No more hints left!");
+          alert(playerName + "You have no more hints left!");
         }
       }
 
@@ -1086,3 +1093,11 @@ Office Hours: Tuesday, 2:00–3:00 pm
             hintButton.hide() 
       }
     }
+
+    function getPlayerName() {
+      playerName = prompt("Enter your name: Trivia Traveler");
+      if (!playerName) {
+          // If the user clicks cancel or enters an empty name, ask again
+          getPlayerName();
+      }
+  }
