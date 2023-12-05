@@ -621,13 +621,17 @@ Office Hours: Tuesday, 2:00–3:00 pm
         
         let currentQuestion = 0;
         let score = 0;
+        let highestScore;
         let streak = 0;
-        let correctCount = 0;
         let streakTotal = 0
+        let streakCount = 0;
+        let longestStreak = 0;
+        let correctCount = 0;
         let actualTotal = 0;
         let currentLevel = 1;
         let levelCounter = -1; //
         let gameRestarted, gameStarted;
+        let replays = 0;
         
         //Reset times --------------------------------------------------------------------------------------------------------------------------
       
@@ -653,7 +657,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level6: "Exit Screen"
         }; 
       
-        let game = { maxTime : 0, state: GameState.Start }; 
+        let game = { maxTime : 0, state: GameState.Level4 }; 
         let timer = game.maxTime;
       
       function preload() {
@@ -666,6 +670,9 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function setup() {
         createCanvas(windowWidth, windowHeight);
         textSize(16);
+
+        loadHighestScore();
+        loadLongestStreak();
         
         remainingHints = 5;
 
@@ -763,6 +770,8 @@ Office Hours: Tuesday, 2:00–3:00 pm
           // Starts / Keeps game flowing
           if ((levelCounter == -1 && !gameRestarted) || (levelCounter == 0 && !gameRestarted)) {
               gameRestarted = true;
+              replays++;
+              localStorage.setItem("replays", replays);
               if (levelCounter == -1) {
                 console.log("The game just started.");
                 levelCounter++;
@@ -876,9 +885,15 @@ Office Hours: Tuesday, 2:00–3:00 pm
                 break;
               case 3:
                 game.state = GameState.GameOver
-                levelCounter = 1; 
+                levelCounter++; 
                 console.log(levelCounter);           
                 break;
+              case 4:
+                game.state = GameState.Level4
+                levelCounter = 1; 
+
+                console.log(levelCounter); 
+              break;
             }
           }
 
@@ -970,14 +985,52 @@ Office Hours: Tuesday, 2:00–3:00 pm
           break;
 
           case GameState.Level4: // Lifetime stats
+          background(0);
+          fill(255);
+          textSize(50);
+          textAlign(CENTER);
+          textStyle(BOLD);
+          text("Lifetime Stats", windowWidth/2, windowHeight/2-150);
+          resetAttributes();
+          text("Highest Score", windowWidth/2-400, (windowHeight/2)-20);
+          textAlign(RIGHT);
+          text(`${highestScore}`, windowWidth/2+300, (windowHeight/2)-20);
 
+          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
+          strokeWeight(2); // Set the stroke weight
+
+          // Draw a line from (50, 50) to (350, 350)
+          line(windowWidth/2-400, (windowHeight/2)-10, windowWidth/2+300, (windowHeight/2)-10);
+          stroke(255);
+          resetAttributes();
+      
+          text("Longest Streak", windowWidth/2-400, (windowHeight/2)+20);
+          textAlign(RIGHT);
+          text(`${longestStreak}`, windowWidth/2+300, (windowHeight/2)+20);
+
+
+          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
+          strokeWeight(2); // Set the stroke weight
+
+          // Draw a line from (50, 50) to (350, 350)
+          line(windowWidth/2-400, (windowHeight/2)+30, windowWidth/2+300, (windowHeight/2)+30);
+          resetAttributes();
+          
+          text("Times Played", windowWidth/2-400, (windowHeight/2)+60);
+          textAlign(RIGHT);
+          text("0", windowWidth/2+300, (windowHeight/2)+60);
+          
+          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
+          strokeWeight(2); // Set the stroke weight
+
+          // Draw a line from (50, 50) to (350, 350)
+          line(windowWidth/2-400, (windowHeight/2)+70, windowWidth/2+300, (windowHeight/2)+70);
+          resetAttributes();
+      
+          text("Press any key to continue", windowWidth/2-100, (windowHeight/2)+205);
           break;
 
-          case GameState.Level5: // Lifetime stats
-
-          break;
-
-          case GameState.Level6: // Lifetime stats
+          case GameState.Level5: // Play again or back to the begining
 
           break;
         }
@@ -993,6 +1046,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
                   score += 100;
                   // console.log("Current Score: " + score);
                   correctCount++;
+                  streakCount++;
                   streak += (i * 50);
                   // console.log("Current Streak: " + streak);
                   streakTotal += streak;
@@ -1000,9 +1054,21 @@ Office Hours: Tuesday, 2:00–3:00 pm
                 } 
                 else {
                   streak = 0;
+                  streakCount = 0;
+                }
+                if (streakCount > longestStreak) {
+                  longestStreak = currentStreak;
+                  // Save longest streak to local storage
+                  localStorage.setItem("longestStreak", longestStreak);
                 }
                 // Move to the next question
-                actualTotal = score + streakTotal; 
+                actualTotal = score + streakTotal;
+                if (!highestScore || actualTotal > highestScore) {
+                    highestScore = actualTotal;
+                    
+                    // Save the new highest score to localStorage
+                    saveHighestScore();
+                }
                 currentQuestion++;
                 console.log("Current  Total Amount: " + actualTotal);
       
@@ -1061,10 +1127,17 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
           case GameState.GameOver :
             
-            resetGame();
-            game.state = GameState.Playing;
+            reset()
+            game.state = GameState.Level4;
           
           break;
+
+          case GameState.Level4 :
+            
+          resetGame();
+          game.state = GameState.Playing;
+        
+        break; 
         }  
       }
 
@@ -1108,4 +1181,34 @@ Office Hours: Tuesday, 2:00–3:00 pm
       score = int(savedScore);
     }
   }
+
+  function resetAttributes() {
+    noFill();
+    noStroke();
+    fill(255);
+    textSize(20);
+    textAlign(LEFT);
+    textStyle(NORMAL);
+  }
+
+  function saveHighestScore() {
+    localStorage.setItem('highestScore', highestScore);
+  }
+  
+  function loadHighestScore() {
+    highestScore = parseInt(localStorage.getItem('highestScore')) || 0;
+  }
+
+  function loadLongestStreak() {
+    if (localStorage.getItem("longestStreak")) {
+      longestStreak = parseInt(localStorage.getItem("longestStreak"));
+    }
+  }
+
+  function loadReplays() {
+    if (localStorage.getItem("replays")) {
+      replays = parseInt(localStorage.getItem("replays"));
+    }
+  }
+  
 
