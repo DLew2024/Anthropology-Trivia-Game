@@ -4,8 +4,6 @@
   
   /* To DO List 
 
-    Gamestate Playing put a transparent bubble behind Score.
-    Level 3 could have more detail.
     Previous score screen
     Play Again Screen
 
@@ -392,7 +390,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       ];
       
         let backgroundMusic;
-        let backgroundImg;
+        let backgroundImg, levelBackground;
         
         let currentQuestion = 0;
         let score = 0;
@@ -422,12 +420,14 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level3: "Level 3", Level3: "Level 4",
         }; 
       
-        let game = { maxTime : 0, state: GameState.Playing }; 
+        let game = { maxTime : 0, state: GameState.Level3 }; 
         let timer = game.maxTime;
       
       function preload() {
         backgroundMusic = loadSound('Music/BackgroundMusic.wav');
         backgroundImg = loadImage('Images/HourGlass.png');
+        levelBackground = loadImage('Images/Sunset.png');
+        
       }
       
       function setup() {
@@ -694,9 +694,12 @@ Office Hours: Tuesday, 2:00–3:00 pm
           break;
       
           case GameState.Level3:
-          background(0);
+          background(levelBackground);
           fill(255);
+          // image(levelBackground, windowWidth/2 - 500, 0);
           textAlign(CENTER);
+          textSize(50);
+          text("Enjoy the view of this sunset because", windowWidth/2, (windowHeight/2)-80);
           textSize(20);
           text("I saved the worst for last. Good luck ;}", windowWidth/2, (windowHeight/2)+40);
           text("Press any key to continue ", windowWidth/2, (windowHeight/2)+165);
