@@ -108,286 +108,509 @@ TR 9:00-10:20 AM
 Office Hours: Tuesday, 2:00–3:00 pm
 
     */
-  
+      
     let questions = [
       {
         // 1
         question: "What is anthropology?",
-        options: ["The study of ancient artifacts", "The study of human societies and cultures", "The study of anthologies", "The study of dinosaurs"],
-        correctOption: 1
+        options: [
+          "The study of ancient artifacts",
+          "The study of human societies and cultures",
+          "The study of anthologies",
+          "The study of dinosaurs"
+        ],
+        correctOption: 1,
+        hint: "Not A or C."
       },
       {
         // 2
-        question: "Which of the following is a subfield of anthropology that focuses on the study" + "\n" + " of past human societies through excavation and analysis of artifacts?",
-        options: ["Cultural anthropology", "Linguistic anthropology", "Archaeology", "Biological anthropology"],
-        correctOption: 2
+        question:
+          "Which of the following is a subfield of anthropology that focuses on the study of past human societies through excavation and analysis of artifacts?",
+        options: [
+          "Cultural anthropology",
+          "Linguistic anthropology",
+          "Archaeology",
+          "Biological anthropology"
+        ],
+        correctOption: 2,
+        hint: "It involves digging into the past."
       },
-      { 
+      {
         // 3
-        question: "What term is used to describe the learned behaviors, beliefs, and customs of a group of people?",
+        question:
+          "What term is used to describe the learned behaviors, beliefs, and customs of a group of people?",
         options: ["Ecology", "Culture", "Genetics", "Archaeology"],
-        correctOption: 1
+        correctOption: 1,
+        hint: "It starts with the letter 'C.'"
       },
       {
         // 4
-        question: "Which subfield of anthropology is concerned with the study of human languages?",
-        options: ["Archaeology", "Biological anthropology", "Linguistic anthropology", "Cultural anthropology"],
-        correctOption: 2 
+        question:
+          "Which subfield of anthropology is concerned with the study of human languages?",
+        options: [
+          "Archaeology",
+          "Biological anthropology",
+          "Linguistic anthropology",
+          "Cultural anthropology"
+        ],
+        correctOption: 2,
+        hint: "It involves the study of language."
       },
       {
-        // 5 
-        question: "In anthropology, what is the term for the process by which individuals learn " + "\n" + "and internalize the values and norms of their culture?",
-        options: ["Socialization", "Isolation", "Acculturation", "Segregation"],
-        correctOption: 0
-        
+        // 5
+        question:
+          "In anthropology, what is the term for the process by which individuals learn and internalize the values and norms of their culture?",
+        options: [
+          "Socialization",
+          "Isolation",
+          "Acculturation",
+          "Segregation"
+        ],
+        correctOption: 0,
+        hint: "It's the process of learning cultural norms."
       },
       {
         // 6
         question: "How do anthropologists define the term \"society\"?",
-        options: ["A group of animals", "A group of people who share a common culture", "A political organization", "A religious institution"],
-        correctOption: 1
-        
+        options: [
+          "A group of animals",
+          "A group of people who share a common culture",
+          "A political organization",
+          "A religious institution"
+        ],
+        correctOption: 1,
+        hint: "It involves a group of people with shared culture."
       },
       {
         // 7
-        question: "Which of the following is a key element of cultural anthropology?",
-        options: ["Excavation of ancient artifacts", "Study of human evolution", "Examination of linguistic patterns", "Exploration of cultural diversity"],
-        correctOption: 3
-        
+        question:
+          "Which of the following is a key element of cultural anthropology?",
+        options: [
+          "Excavation of ancient artifacts",
+          "Study of human evolution",
+          "Examination of linguistic patterns",
+          "Exploration of cultural diversity"
+        ],
+        correctOption: 3,
+        hint: "It focuses on the study of diverse cultures."
       },
       {
         // 8
         question: "What is the main focus of biological anthropology?",
-        options: ["Cultural practices", "Human evolution and biology", "Linguistic diversity", "Archaeological excavations"],
-        correctOption: 1
-        
+        options: [
+          "Cultural practices",
+          "Human evolution and biology",
+          "Linguistic diversity",
+          "Archaeological excavations"
+        ],
+        correctOption: 1,
+        hint: "It involves the study of human evolution and biology."
       },
       {
         // 9
-        question: "What term is used to describe the process of adapting to and adopting" + "\n" + " elements of another culture?",
+        question:
+          "What term is used to describe the process of adapting to and adopting elements of another culture?",
         options: ["Acculturation", "Isolation", "Segregation", "Ethnocentrism"],
-        correctOption: 0
-        
+        correctOption: 0,
+        hint: "It's the process of adapting to a different culture."
       },
       {
         // 10
         question: "Which of the following is an example of material culture?",
         options: ["Language", "Beliefs", "Tools and artifacts", "Social norms"],
-        correctOption: 2
-        
+        correctOption: 2,
+        hint: "It involves tangible items created by a culture."
       },
       {
-      
         // 11
-        question: "How do anthropologists define the term \"ethnocentrism\"",
-        options: ["A belief in cultural relativism", "Evaluating other cultures in terms of one's own cultural values", "Studying cultures objectively", "Adapting to different cultural norms"],
-        correctOption: 1
-        
+        question:
+          "How do anthropologists define the term \"ethnocentrism\"?",
+        options: [
+          "A belief in cultural relativism",
+          "Evaluating other cultures in terms of one's own cultural values",
+          "Studying cultures objectively",
+          "Adapting to different cultural norms"
+        ],
+        correctOption: 1,
+        hint: "It involves judging other cultures by one's own standards."
       },
       {
         // 12
-        question: "What is the study of human evolution and the physical variation among human populations called?",
-        options: ["Cultural anthropology", "Archaeology", "Biological anthropology", "Linguistic anthropology"],
-        correctOption: 2
-        
+        question:
+          "What is the study of human evolution and the physical variation among human populations called?",
+        options: [
+          "Cultural anthropology",
+          "Archaeology",
+          "Biological anthropology",
+          "Linguistic anthropology"
+        ],
+        correctOption: 2,
+        hint: "It involves the study of human biology and evolution."
       },
       {
         // 13
         question: "In anthropology, what does the term \"fieldwork\" refer to?",
-        options: ["Laboratory research", "Studying cultures in their natural environments", "Literary analysis", "Linguistic research"],
-        correctOption: 1
-        
+        options: [
+          "Laboratory research",
+          "Studying cultures in their natural environments",
+          "Literary analysis",
+          "Linguistic research"
+        ],
+        correctOption: 1,
+        hint: "It involves on-site research in natural environments."
       },
       {
         // 14
-        question: "Which of the following best describes the focus of cultural anthropology?",
-        options: ["The study of human biology", "The study of human societies and their cultures", "The study of ancient civilizations", "The study of language and communication"],
-        correctOption: 1
-        
+        question:
+          "Which of the following best describes the focus of cultural anthropology?",
+        options: [
+          "The study of human biology",
+          "The study of human societies and their cultures",
+          "The study of ancient civilizations",
+          "The study of language and communication"
+        ],
+        correctOption: 1,
+        hint: "It focuses on the study of societies and cultures."
       },
       {
         // 15
-        question: "What is the primary tool used by archaeologists to uncover and analyze artifacts?",
-        options: ["Microscope", "Shovel", "DNA analysis", "Telescope"],
-        correctOption: 1
-        
+        question:
+          "What is the primary tool used by archaeologists to uncover and analyze artifacts?",
+        options: [
+          "Microscope",
+          "Shovel",
+          "DNA analysis",
+          "Telescope"
+        ],
+        correctOption: 1,
+        hint: "It's a tool used for digging and excavation."
       },
       {
         // 16
-        question: "What is the term for a system of communication using symbols, sounds, or gestures" + "\n" + " to convey meaning?",
-        options: ["Culture", "Language", "Biology", "Archaeology"],
-        correctOption: 1
-        
+        question:
+          "What is the term for a system of communication using symbols, sounds, or gestures to convey meaning?",
+        options: [
+          "Culture",
+          "Language",
+          "Biology",
+          "Archaeology"
+        ],
+        correctOption: 1,
+        hint: "It involves the use of symbols and sounds to convey meaning."
       },
       {
         // 17
-        question: "Which subfield of anthropology explores the relationships between humans and their environment?",
-        options: ["Cultural anthropology", "Linguistic anthropology", "Environmental anthropology", "Biological anthropology"],
-        correctOption: 2
-        
+        question:
+          "Which subfield of anthropology explores the relationships between humans and their environment?",
+        options: [
+          "Cultural anthropology",
+          "Linguistic anthropology",
+          "Environmental anthropology",
+          "Biological anthropology"
+        ],
+        correctOption: 2,
+        hint: "It focuses on the relationship between humans and their surroundings."
       },
       {
         // 18
-        question: "What is the term for the set of rules and expectations that guide behavior within a society?",
-        options: ["Laws", "Norms", "Rituals", "Customs"],
-        correctOption: 1
-        
+        question:
+          "What is the term for the set of rules and expectations that guide behavior within a society?",
+        options: [
+          "Laws",
+          "Norms",
+          "Rituals",
+          "Customs"
+        ],
+        correctOption: 1,
+        hint: "It involves guidelines for behavior within a society."
       },
       {
         // 19
-        question: "Which of the following is a characteristic of culture?",
-        options: ["Genetically inherited traits", "Universality across all societies", "Static and unchanging", "Dynamic and adaptive"],
-        correctOption: 3
-        
+        question:
+          "Which of the following is a characteristic of culture?",
+        options: [
+          "Genetically inherited traits",
+          "Universality across all societies",
+          "Static and unchanging",
+          "Dynamic and adaptive"
+        ],
+        correctOption: 3,
+        hint: "It's dynamic and capable of adaptation."
       },
       {
         // 20
-        question: "In anthropology, what is the term for the practice of judging another culture" + "\n" + " by the standards of one's own culture?",
-        options: ["Cultural relativism", "Ethnocentrism", "Acculturation", "Cultural adaptation"],
-        correctOption: 1
-        
+        question:
+          "In anthropology, what is the term for the practice of judging another culture by the standards of one's own culture?",
+        options: [
+          "Cultural relativism",
+          "Ethnocentrism",
+          "Acculturation",
+          "Cultural adaptation"
+        ],
+        correctOption: 1,
+        hint: "It involves judging based on one's own cultural standards."
       },
       {
         // 21
-        question: "What is the primary focus of linguistic anthropology?",
-        options: ["The study of human evolution", "The analysis of ancient artifacts", "The study of human languages", "The examination of cultural practices"],
-        correctOption: 2
-        
+        question:
+          "What is the primary focus of linguistic anthropology?",
+        options: [
+          "The study of human evolution",
+          "The analysis of ancient artifacts",
+          "The study of human languages",
+          "The examination of cultural practices"
+        ],
+        correctOption: 2,
+        hint: "It involves the study of languages in the context of human societies."
       },
       {
         // 22
-        question: "What is the study of patterns and processes of human social interaction and relationships called?",
-        options: ["Sociology", "Psychology", "Anthropology", "Ethnography"],
-        correctOption: 0
-        
+        question:
+          "What is the study of patterns and processes of human social interaction and relationships called?",
+        options: [
+          "Sociology",
+          "Psychology",
+          "Anthropology",
+          "Ethnography"
+        ],
+        correctOption: 0,
+        hint: "It's a discipline focused on human social interactions."
       },
       {
         // 23
-        question: "Which subfield of anthropology explores the biological aspects" + "\n" + " of human beings, including evolution and genetics?",
-        options: ["Cultural anthropology", "Archaeology", "Linguistic anthropology", "Biological anthropology"],
-        correctOption: 3
-        
+        question:
+          "Which subfield of anthropology explores the biological aspects of human beings, including evolution and genetics?",
+        options: [
+          "Cultural anthropology",
+          "Archaeology",
+          "Linguistic anthropology",
+          "Biological anthropology"
+        ],
+        correctOption: 3,
+        hint: "It involves the study of human biology, evolution, and genetics."
       },
       {
         // 24
-        question: "What is the term for the transmission of cultural elements from one society or generation to another?",
-        options: ["Acculturation", "Cultural adaptation", "Cultural diffusion", "Ethnography"],
-        correctOption: 2
-        
+        question:
+          "What is the term for the transmission of cultural elements from one society or generation to another?",
+        options: [
+          "Acculturation",
+          "Cultural adaptation",
+          "Cultural diffusion",
+          "Ethnography"
+        ],
+        correctOption: 2,
+        hint: "It involves the spread of cultural elements between societies."
       },
       {
         // 25
-        question: "What is the process by which individuals internalize cultural beliefs and practices called?",
-        options: ["Acculturation", "Socialization", "Ethnography", "Segregation"],
-        correctOption: 1
-        
+        question:
+          "What is the process by which individuals internalize cultural beliefs and practices called?",
+        options: [
+          "Acculturation",
+          "Socialization",
+          "Ethnography",
+          "Segregation"
+        ],
+        correctOption: 1,
+        hint: "It's the process of learning and internalizing cultural beliefs."
       },
       {
         // 26
-        question: "Which of the following is an example of non-material culture?",
-        options: ["Clothing styles", "Tools and artifacts", "Language", "Food preferences"],
-        correctOption: 2
-        
+        question:
+          "Which of the following is an example of non-material culture?",
+        options: [
+          "Clothing styles",
+          "Tools and artifacts",
+          "Language",
+          "Food preferences"
+        ],
+        correctOption: 2,
+        hint: "It involves aspects of culture that are not physical or tangible."
       },
       {
         // 27
-        question: "What is the term for the beliefs, values, and practices that define a particular group of people?",
-        options: ["Material culture", "Culture", "Norms", "Customs"],
-        correctOption: 1
-        
+        question:
+          "What is the term for the beliefs, values, and practices that define a particular group of people?",
+        options: [
+          "Material culture",
+          "Culture",
+          "Norms",
+          "Customs"
+        ],
+        correctOption: 1,
+        hint: "It encompasses the shared beliefs and practices of a group."
       },
       {
         // 28
-        question: "What is the study of human societies and cultures through the analysis of material remains called?",
-        options: ["Linguistic anthropology", "Cultural anthropology", "Archaeology", "Biological anthropology"],
-        correctOption: 2
-        
+        question:
+          "What is the study of human societies and cultures through the analysis of material remains called?",
+        options: [
+          "Linguistic anthropology",
+          "Cultural anthropology",
+          "Archaeology",
+          "Biological anthropology"
+        ],
+        correctOption: 2,
+        hint: "It involves the analysis of artifacts and material culture."
       },
       {
         // 29
-        question: "What term is used to describe a social system in which descent and inheritance" + "\n" + " are traced through the mother's line?",
-        options: ["Matrilineal", "Patrilineal", "Bilateral", "Unilineal"],
-        correctOption: 0
-        
+        question:
+          "What term is used to describe a social system in which descent and inheritance are traced through the mother's line?",
+        options: [
+          "Matrilineal",
+          "Patrilineal",
+          "Bilateral",
+          "Unilineal"
+        ],
+        correctOption: 0,
+        hint: "It involves tracing descent through the maternal line."
       },
       {
         // 30
-        question: "Which of the following is an example of a rite of passage?",
-        options: ["Graduation ceremony", "Daily meal", "Language acquisition", "Family gathering"],
-        correctOption: 0
-        
+        question:
+          "Which of the following is an example of a rite of passage?",
+        options: [
+          "Graduation ceremony",
+          "Daily meal",
+          "Language acquisition",
+          "Family gathering"
+        ],
+        correctOption: 0,
+        hint: "It's a ceremonial event marking a significant life transition."
       },
       {
         // 31
-        question: "What is the term for the systematic study of myths and legends in a particular culture?",
-        options: ["Archaeology", "Ethnography", "Folklore", "Linguistics"],
-        correctOption: 2
-        
+        question:
+          "What is the term for the systematic study of myths and legends in a particular culture?",
+        options: [
+          "Archaeology",
+          "Ethnography",
+          "Folklore",
+          "Linguistics"
+        ],
+        correctOption: 2,
+        hint: "It involves the study of traditional stories and legends within a culture."
       },
       {
         // 32
-        question: "How do cultural anthropologists typically gather information about a culture?",
-        options: ["Laboratory experiments", "Surveys and questionnaires", "Fieldwork and participant observation", "Literary analysis"],
-        correctOption: 2
-      
+        question:
+          "How do cultural anthropologists typically gather information about a culture?",
+        options: [
+          "Laboratory experiments",
+          "Surveys and questionnaires",
+          "Fieldwork and participant observation",
+          "Literary analysis"
+        ],
+        correctOption: 2,
+        hint: "It involves immersive research conducted in natural environments."
       },
       {
         // 33
-        question: "What is the term for the set of rules that govern the structure and functioning of a society?",
-        options: ["Customs", "Norms", "Laws", "Traditions"],
-        correctOption: 2
-        
+        question:
+          "What is the term for the set of rules that govern the structure and functioning of a society?",
+        options: [
+          "Customs",
+          "Norms",
+          "Laws",
+          "Traditions"
+        ],
+        correctOption: 2,
+        hint: "It involves guidelines for the structure and functioning of a society."
       },
       {
         // 34
-        question: "In anthropology, what is the term for the exchange of goods and services between individuals or groups?",
-        options: ["Reciprocity", "Redistribution", "Market exchange", "Barter"],
-        correctOption: 3
-        
+        question:
+          "In anthropology, what is the term for the exchange of goods and services between individuals or groups?",
+        options: [
+          "Reciprocity",
+          "Redistribution",
+          "Market exchange",
+          "Barter"
+        ],
+        correctOption: 3,
+        hint: "It involves the exchange of goods and services without using money."
       },
       {
         // 35
-        question: "Which of the following is an example of a non-verbal form of communication?",
-        options: ["Speaking a foreign language", "Writing a letter", "Using hand gestures", "Sending an email"],
-        correctOption: 2
-        
+        question:
+          "Which of the following is an example of a non-verbal form of communication?",
+        options: [
+          "Speaking a foreign language",
+          "Writing a letter",
+          "Using hand gestures",
+          "Sending an email"
+        ],
+        correctOption: 2,
+        hint: "It involves communication without using spoken or written words."
       },
       {
         // 36
-        question: "What term is used to describe the belief that one's own culture is superior to others?",
-        options: ["Cultural relativism", "Ethnocentrism", "Cultural diffusion", "Acculturation"],
-        correctOption: 1
-        
+        question:
+          "What term is used to describe the belief that one's own culture is superior to others?",
+        options: [
+          "Cultural relativism",
+          "Ethnocentrism",
+          "Cultural diffusion",
+          "Acculturation"
+        ],
+        correctOption: 1,
+        hint: "It involves viewing one's own culture as superior to others."
       },
       {
         // 37
-        question: "What is the term for the physical objects that people create, use, and share?",
-        options: ["Symbols", "Beliefs", "Artifacts", "Customs"],
-        correctOption: 2
-        
+        question:
+          "What is the term for the physical objects that people create, use, and share?",
+        options: [
+          "Symbols",
+          "Beliefs",
+          "Artifacts",
+          "Customs"
+        ],
+        correctOption: 2,
+        hint: "It involves tangible items created and used by people."
       },
       {
         // 38
-        question: "How do anthropologists define the concept of \"cultural relativism\"?",
-        options: ["The belief that all cultures are equal", "The practice of judging other cultures by one's own standards", "The objective study of cultures without bias", "The adaptation of one's own culture to another"],
-        correctOption: 0
-        
+        question:
+          "How do anthropologists define the concept of \"cultural relativism\"?",
+        options: [
+          "The belief that all cultures are equal",
+          "The practice of judging other cultures by one's own standards",
+          "The objective study of cultures without bias",
+          "The adaptation of one's own culture to another"
+        ],
+        correctOption: 0,
+        hint: "It involves recognizing and respecting the equality of all cultures."
       },
       {
         // 39
-        question: "What is the term for the process of individuals adapting to a new culture?",
-        options: ["Acculturation", "Ethnocentrism", "Cultural diffusion", "Cultural relativism"],
-        correctOption: 0
-        
+        question:
+          "What is the term for the process of individuals adapting to a new culture?",
+        options: [
+          "Acculturation",
+          "Ethnocentrism",
+          "Cultural diffusion",
+          "Cultural relativism"
+        ],
+        correctOption: 0,
+        hint: "It involves adapting to and adopting elements of a new culture."
       },
       {
         // 40
-        question: "Which of the following is an example of a cultural universal?",
-        options: ["The practice of arranged marriages", "The use of language", "The belief in a single deity", "The wearing of specific clothing"],
-        correctOption: 1
-        
-      }            
-      ];
+        question:
+          "Which of the following is an example of a cultural universal?",
+        options: [
+          "The practice of arranged marriages",
+          "The use of language",
+          "The belief in a single deity",
+          "The wearing of specific clothing"
+        ],
+        correctOption: 1,
+        hint: "It's a feature that exists in all cultures around the world."
+      },
+    ];
       
         let backgroundMusic;
         let backgroundImg, levelBackground;
