@@ -692,18 +692,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
         playerName = "";
         
       }
-
-      function startGame() {
-        // Set the player name and remove input elements
-        playerName = playerNameInput.value();
-        playerNameInput.remove();
-      
-        // Remove the "Start Game" button
-        document.querySelector('button').remove();
-
-        game.state = GameState.Level2;
-      
-      }
       
 
       function draw() {
