@@ -4,12 +4,9 @@
   
   /* To DO List 
 
-    Previous score screen
-    Play Again Screen
     Save Score and repeat at the end.
     if timer less than= 10 chnage color of bar and number 
-    
-
+  
   */
 
     /*
@@ -615,23 +612,24 @@ Office Hours: Tuesday, 2:00–3:00 pm
         let backgroundImg, levelBackground;
 
         let hintButton;
+        let exitButton, playAgainButton; 
         let remainingHints;
 
         let playerName;
         
+        let highestScore = 0;
         let currentQuestion = 0;
         let score = 0;
-        let highestScore;
         let streak = 0;
         let streakTotal = 0
         let streakCount = 0;
         let longestStreak = 0;
         let correctCount = 0;
         let actualTotal = 0;
-        let currentLevel = 1;
-        let levelCounter = -1; //
-        let gameRestarted, gameStarted;
-        let replays = 0;
+        let levelCounter = 0; //
+        let gameRestarted = false;
+        let gameRestartedflag = false;
+        let timesPlayed = 1;
         
         //Reset times --------------------------------------------------------------------------------------------------------------------------
       
@@ -653,8 +651,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           Level3: "Sunset Transition", 
           GameOver: "GameOver", 
           Level4: "Lifetime stats", 
-          Level5: "Play again",
-          Level6: "Exit Screen"
+          Level5: "Play again Exit Screen"
         }; 
       
         let game = { maxTime : 0, state: GameState.Start }; 
@@ -670,9 +667,11 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function setup() {
         createCanvas(windowWidth, windowHeight);
         textSize(16);
+        resetLocalStorage();
 
         loadHighestScore();
         loadLongestStreak();
+        loadReplays();
         
         remainingHints = 5;
 
@@ -680,7 +679,16 @@ Office Hours: Tuesday, 2:00–3:00 pm
         hintButton.position(windowWidth/10 - 110, windowHeight/2 + 355);
         hintButton.mousePressed(showHint);
         hintButton.size(50,25);
-        // hintButton.hide();
+
+        exitButton = createButton('Exit');
+        exitButton.position(windowWidth/5 + 850, windowHeight/2 + 300);
+        exitButton.mousePressed(exit);
+        exitButton.size(100,30);
+
+        playAgainButton = createButton('Play Again');
+        playAgainButton.position(windowWidth/5 - 110, windowHeight/2 + 300);
+        playAgainButton.mousePressed(playAgain);
+        playAgainButton.size(100,30);
 
         // backgroundMusic.loop();
       }
@@ -688,23 +696,45 @@ Office Hours: Tuesday, 2:00–3:00 pm
       function reset() {
         timer = game.maxTime;
         timerDuration = timerTime;
+        remainingHints = 5;
       }
-      
-      function resetGame() {
-        timer = game.maxTime;
-        timerDuration = timerTime;
+
+      function playAgainReset() {
+        reset();
         currentQuestion = 0;
-        currentLevel = -1;
+        levelCounter = 2;
         score = 0; 
         streak = 0;
         correctCount = 0;
         streakTotal = 0;
         streakCount = 0
         actualTotal = 0;
-        longestStreak = 0;
         remainingHints = 5;
+        gameRestarted = true;
+        gameRestartedflag = true;
+      }
+      
+      function resetGame() {
+        timer = game.maxTime;
+        timerDuration = timerTime;
+
+        highestScore = 0;
+        currentQuestion = 0;
+        score = 0; 
+        streak = 0;
+        streakTotal = 0;
+        streakCount = 0
+        longestStreak = 0;
+        correctCount = 0;
+        actualTotal = 0;
+        levelCounter = 0;
+        gameRestarted = false;
+        gameRestartedflag = false;
+        timesPlayed = 1;
+        resetLocalStorage();
+
         playerName = "";
-        replays = 0;
+        remainingHints = 5;
         
       }
       
@@ -714,7 +744,9 @@ Office Hours: Tuesday, 2:00–3:00 pm
         background(220);
         fill(0);
 
+
         toggleHintButton();
+        toggleOtherButton();
       
         switch(game.state) {
 
@@ -766,23 +798,35 @@ Office Hours: Tuesday, 2:00–3:00 pm
             timerBarWidth = map(timerDuration, 0, uneditedTimerDuration, 0, 800);
           }
           // Moving white bar
-          fill(255);
+          if (timer <= 20) {
+            fill(255);
+          }
+          else {
+            let c = color('rgb(255, 172, 28)');
+            fill(c);
+          }
           rect(windowWidth/2-400, windowHeight/2-300, timerBarWidth, 20, 20);
+          // Timer number 
+          textAlign(RIGHT);
+          text("" + timer, windowWidth/2-415, windowHeight/2-280);
+          if (frameCount % 60 == 0 && timer >= 0) { timer++; }
           //Hourglass
           image(backgroundImg, windowWidth/2-550, windowHeight/2-340, 100, 105);
-          // Starts / Keeps game flowing
-          if ((levelCounter == -1 && !gameRestarted) || (levelCounter == 0 && !gameRestarted)) {
-              gameRestarted = true;
-              replays++;
-              localStorage.setItem("replays", replays);
-              if (levelCounter == -1) {
-                console.log("The game just started.");
-                levelCounter++;
-              } else if (levelCounter == 0) {
-                reset();
-                console.log("The game just restarted.");
-              }
+          
+        if ((levelCounter == 2 && !gameRestarted || gameRestarted)) {
+            if ((levelCounter == 2 && gameRestarted == false) && gameRestartedflag == false) {
+              console.log("The game just started.");  
+              gameRestartedflag = true;           
+            }
+            else if (levelCounter == 2 && gameRestarted == true && gameRestartedflag == true) {
+              reset();
+              console.log("The game just restarted.");
+              timesPlayed++;
+              localStorage.setItem("replays", timesPlayed);
+              gameRestartedflag = false; 
+            }
           }
+          
           // Draw a rectangular bubble shape
           fill(150, 150, 150, 100); 
           rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
@@ -793,11 +837,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
           fill(150, 150, 150, 100); 
           rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
 
-          // Timer number 
-          fill(255);
-          textAlign(RIGHT);
-          text("" + timer, windowWidth/2-415, windowHeight/2-280);
-          if (frameCount % 60 == 0 && timer >= 0) { timer++; }
           textAlign(LEFT);
           // Questions Text
           fill(0);
@@ -865,38 +904,20 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
           if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
             switch (levelCounter) {
-              case -1:
-                levelCounter++;
-                game.state = GameState.LevelIntro;
-                console.log(levelCounter);
-                break;
-              case 0:
-                levelCounter++;
-                game.state = GameState.Playing;
-                console.log(levelCounter);
-                break;
-              case 1: // old 0
-                gameRestarted = false;
+              case 2: // old 0
                 game.state = GameState.Level2;
                 levelCounter++;
-                console.log(levelCounter);
-                break;
-              case 2:
-                game.state = GameState.Level3;
-                levelCounter++;
-                console.log(levelCounter);
                 break;
               case 3:
-                game.state = GameState.GameOver
-                levelCounter++; 
-                console.log(levelCounter);           
+                game.state = GameState.Level3;
+                levelCounter++;
                 break;
               case 4:
-                game.state = GameState.Level4
-                levelCounter = 1; 
-
-                console.log(levelCounter); 
-              break;
+                game.state = GameState.GameOver           
+                break;
+              // case 5:
+              //   game.state = GameState.Level4 
+              // break;
             }
           }
 
@@ -971,7 +992,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
           case GameState.GameOver:
           
           background(0);
-      
           fill(255);
           textAlign(CENTER);
           textSize(140);
@@ -988,6 +1008,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           break;
 
           case GameState.Level4: // Lifetime stats
+
           background(0);
           fill(255);
           textSize(50);
@@ -1021,7 +1042,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           
           text("Times Played", windowWidth/2-400, (windowHeight/2)+60);
           textAlign(RIGHT);
-          text("0", windowWidth/2+300, (windowHeight/2)+60);
+          text(`${timesPlayed}`, windowWidth/2+300, (windowHeight/2)+60);
           
           stroke(255, 0, 0); // Set stroke color to red (R, G, B)
           strokeWeight(2); // Set the stroke weight
@@ -1035,11 +1056,21 @@ Office Hours: Tuesday, 2:00–3:00 pm
 
           case GameState.Level5: // Play again or back to the begining
 
+          background(0);
+          fill(255);
+          textAlign(CENTER);
+          textSize(140);
+          text("Play Again ?", windowWidth/2, windowHeight/2-180);
+          textSize(20);
+          text(`Well, ${playerName} I guess I'll see you on the other side Trivia Traveler.`, windowWidth/2, windowHeight/2+25);
+          
           break;
         }
       }
 
       function mouseClicked() {
+
+        //Game state then do nothing  Not playing 
             // Check if an option is clicked
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
             const optionY = (windowHeight/4)+65+80-30 + i * 30;
@@ -1059,21 +1090,14 @@ Office Hours: Tuesday, 2:00–3:00 pm
                   streak = 0;
                   streakCount = 0;
                 }
-                if (streakCount > longestStreak) {
-                  longestStreak = streakCount;
-                  // Save longest streak to local storage
-                  localStorage.setItem("longestStreak", longestStreak);
-                }
+                
                 // Move to the next question
                 actualTotal = score + streakTotal;
-                if (!highestScore || actualTotal > highestScore) {
-                    highestScore = actualTotal;
-                    
-                    // Save the new highest score to localStorage
-                    saveHighestScore();
-                }
+                checkHighestScore();
+                checkHighestStreak();
+
                 currentQuestion++;
-                console.log("Current  Total Amount: " + actualTotal);
+                // console.log("Current  Total Amount: " + actualTotal);
       
                 if (currentQuestion == 10) {
                     game.state = GameState.Level2;
@@ -1096,17 +1120,19 @@ Office Hours: Tuesday, 2:00–3:00 pm
         switch (game.state) {
           case GameState.Start :
           
-
+            
             game.state = GameState.LevelIntro;
             // backgroundMusic.play();
             getPlayerName();
+            levelCounter++;
       
           break;
-
+          
           case GameState.LevelIntro :
       
             reset();
             game.state = GameState.Playing;
+            levelCounter++;
       
           break;
       
@@ -1118,6 +1144,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
             reset();
             game.state = GameState.Playing;
+            levelCounter++;
       
           break;
       
@@ -1125,22 +1152,27 @@ Office Hours: Tuesday, 2:00–3:00 pm
       
             reset();
             game.state = GameState.Playing;
+            levelCounter++;
       
           break;
       
           case GameState.GameOver :
             
-            reset()
             game.state = GameState.Level4;
+            levelCounter++;
           
           break;
 
           case GameState.Level4 :
             
-          resetGame();
-          game.state = GameState.Playing;
+          game.state = GameState.Level5;
+          levelCounter++;
         
-        break; 
+          break;
+          
+          case GameState.Level5 :
+          
+          break;
         }  
       }
 
@@ -1149,69 +1181,105 @@ Office Hours: Tuesday, 2:00–3:00 pm
           alert(questions[currentQuestion].hint);
           remainingHints--;
         } else {
-          alert(playerName + "You have no more hints left!");
+          alert(playerName + " You have no more hints left!");
         }
       }
 
+      function playAgain() {
+        playAgainReset();
+        game.state = GameState.Playing;
+      }
+
+      function exit() {
+        resetGame();
+        game.state = GameState.Start;
+      }
+
       function toggleHintButton() {
-        switch(game.state) {
-          case GameState.Playing :
-            hintButton.show() 
-          break;
-          default :
-            hintButton.hide() 
+          switch(game.state) {
+            case GameState.Playing :
+              hintButton.show(); 
+            break;
+            default :
+              hintButton.hide();
+        }
       }
-    }
 
-    function getPlayerName() {
-      playerName = prompt("Enter your name: Trivia Traveler");
-      if (!playerName) {
-          getPlayerName();
+      function toggleOtherButton() {
+          switch(game.state) {
+            case GameState.Level5 :
+              exitButton.show(); 
+              playAgainButton.show();
+            break;
+            default :
+            exitButton.hide(); 
+            playAgainButton.hide(); 
+        }
       }
-  }
 
-  function saveScore() {
-    // Save the score to localStorage
-    localStorage.setItem(playerName + "_triviaScore", score);
-  }
+      function getPlayerName() {
+          playerName = prompt("Enter your name: Trivia Traveler");
+          if (!playerName) {
+              getPlayerName();
+          }
+      }
 
-  function loadScore() {
-    // Load the score from localStorage
-    let savedScore = localStorage.getItem(playerName + "_triviaScore");
+      function resetAttributes() {
+        noFill();
+        noStroke();
+        fill(255);
+        textSize(20);
+        textAlign(LEFT);
+        textStyle(NORMAL);
+      }
+      
+      function loadHighestScore() {
+        // Load the highest score from localStorage
+        let savedHighestScore = localStorage.getItem("highestScore");
 
-    // Check if a score exists in localStorage
-    if (savedScore !== null) {
-      score = int(savedScore);
-    }
-  }
+        // Check if a highest score exists in localStorage
+        if (savedHighestScore !== null) {
+          highestScore = int(savedHighestScore);
+        }
+      }
 
-  function resetAttributes() {
-    noFill();
-    noStroke();
-    fill(255);
-    textSize(20);
-    textAlign(LEFT);
-    textStyle(NORMAL);
-  }
+      function checkHighestScore() {
+        // Check if the current score is higher than the highest score
+        if (actualTotal > highestScore) {
+          highestScore = actualTotal;
+          // Save the new highest score to localStorage
+          localStorage.setItem("highestScore", highestScore);
+        }
+      }
 
-  function saveHighestScore() {
-    localStorage.setItem('highestScore', highestScore);
-  }
-  
-  function loadHighestScore() {
-    highestScore = parseInt(localStorage.getItem('highestScore')) || 0;
-  }
+      function loadLongestStreak() {
+        let savedLongestStreak = localStorage.getItem("longestStreak");
+        if (savedLongestStreak !== null) {
+          longestStreak = int(savedLongestStreak);
+        }
+      }
 
-  function loadLongestStreak() {
-    if (localStorage.getItem("longestStreak")) {
-      longestStreak = parseInt(localStorage.getItem("longestStreak"));
-    }
-  }
+      function checkHighestStreak() {
+        // Check if the current score is higher than the highest score
+        if ( streakCount > longestStreak) {
+          longestStreak = streakCount;
+          // Save the new highest score to localStorage
+          localStorage.setItem("longestStreak", longestStreak);
+        }
+      }
 
-  function loadReplays() {
-    if (localStorage.getItem("replays")) {
-      replays = parseInt(localStorage.getItem("replays"));
-    }
-  }
+      function loadReplays() {
+        let savedReplays = localStorage.getItem("replays")
+        if (savedReplays !== null) {
+          timesPlayed = int(savedReplays);
+        }
+      }
+
+      function resetLocalStorage() {
+        // Remove the triviaScore and highestScore items from local storage
+        localStorage.removeItem("replays");
+        localStorage.removeItem("longestStreak");
+        localStorage.removeItem("highestScore");
+      }
   
 
