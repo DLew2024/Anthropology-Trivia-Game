@@ -1,111 +1,13 @@
   // Remember to uncomment music --------------------------------------------------------------------------------------------
   // Reset times -------------------------------------------------------------------------------------------------------------
   // Goal 8000
-  
-  /* To DO List 
-
-    Save Score and repeat at the end.
-    if timer less than= 10 chnage color of bar and number 
-  
-  */
-
-    /*
-    High-Fidelity Prototype 40/50
-Prototype is thoughtfully designed and addresses a set of requirements. Prototype provides necessary functionality and does not require simulation of responses by a human. Prototypes make effective use of design principles. Prototype addresses design issues that arose in low-fidelity prototypes.
-
-
-Minimal functional prototype with simple question and answer interactions. Focus on making a functional trivia game. 
-
-Need to incorporate feedback mechanisms so that players know when they get a question right or wrong. If wrong, then they need some indication of what is the correct answer, so that they can learn. 
-
-Consider adding some limited-use (e.g., only once per round) help mechanics such as a 50-50 option that eliminates two of the incorrect responses. 
-
-Think of other assistive mechanisms you can incorporate. 
-
-Additionally, players need some kind of progress tracking mechanism, such as what is the number of the current question out of how many total questions to answer this round. This could also be represented a as a progress bar.
-
-Evaluation 0/30
-
-Design insights revealed through evaluation. Use of appropriate methods, data collection, and data analysis.
-
-Design Insights 10/10
-
-Explanation of successful or problematic aspects of designs. Future plans make effective use of user feedback from evaluation.
-
-Presentation 0/10
-
-Focused, clear, and concise. Stick to time limit. Use of visuals to help illustrate ideas.
-
-No presentation.
-
-    */
-
-  /*
-    ASSIGNMENT 6: FINAL PRODUCT
-(DUE MONDAY, DECEMBER 4 AT 11:59 PM)
-The goal of this assignment is to produce and evaluate a final interactive product that meets a set of user needs identified in the earlier Requirements assignment.
-Final Product #
-The final product should be a functional prototype that represents the culmination of the past four assignments. It should enable users to perform the entirety of an activity or set activities that you identified in your Proposal or Requirements assignments. Iterate on your high-fidelity prototype from the last assignment based upon findings from its evaluation. Implement additional functionality as needed to provide a complete interactive product. The final product should be more complete and polished than your high-fidelity prototype.
-Evaluation #
-Conduct an informal, summative evaluation of your final product with at least four participants. Your evaluation should take the form of either a controlled experiment or a field study. Consider which approach is most appropriate and reasonable for your product and user requirements.
-Controlled Experiment #
-For a controlled experiment, identify independent and dependent variables. Consider whether to do a within-subjects or between-subjects experiment (I recommend within-subjects as this will allow for asking participants to compare their experiences). Look for existing products that you can compare your final product against. Design a study with clear procedures. The study should include:
-A briefing phase where you describe to participants what they will be asked to do and obtain verbal consent about their participation;
-A task phase where participants perform specific tasks related to activity your final product is supporting. Identify how you will collect data about dependent variables in this phase.
-A questioning phase where participants answer responses to survey or interview questions. Focus questions around those that will help you assess whether your product meets particular requirements.
-A debriefing phase where you explain to the participants the motivations for your evaluation and allow them to ask you any questions.
-Field Study #
-For a field study, you will give participants your product and ask them to use your product over the course of several sessions ideally without your involvement. If your supported activity is performed in a single session, then this method may not be appropriate. Identify types of data that need to be collected, and how you will collect this data. Come up with an informative script for how to describe your final product to participants and what activities you will ask them to perform using it. Obtain verbal consent from participants once you have explained the study. To simplify data collection, it may be best to use diaries and have participants write down about their experiences after each use of the product. Develop either a questionnaire or set of interview questions to ask participants after using your product over several sessions. Make sure to tailor questions towards understanding whether or not your product meets selected requirements.
-Deliverables #
-Deliverables for this assignment are a final report and self+peer assessment forms.
-Self+Peer Assessment Form (Due Monday, December 4 at 11:59 PM) #
-Fill out the following assessment form of your individual efforts and those of your teammates: Assessment Form. Submit the form via Moodle. Assessments forms will factor into individual grade calculations.
-Final Report (Due Monday, December 4 at 11:59 PM) #
-The report PDF must use single-spaced US Letter (8.5 x 11 in) pages with between 1 - 1.5 inch margins. Font size for body text should be between 10 - 12 pt. Heading font sizes should be no larger than 16 pt.
-Word counts presented below indicate the level of detail needed for each section. They are not requirements or limits. Use the amount of words you find appropriate.
-Introduction (around 300-500 words) #
-The introduction should establish a framing for presenting your final product. Describe the needs and requirements that your final product is addressing. This should be presented as if your reader knows nothing about your product and the target users and their needs. What activities does your product support and why is it needed? Who are your target users and why do they need your product?
-Final Product Design (around 1000-1500 words) #
-Describe the final product design. Include aspects of hardware, software, interaction, and experience, as appropriate. Explain how activities presented in the introduction are performed using the product. How does your design meet the needs and requirements of your target users. What has been the role of data collected in earlier, formative studies? How has your product evolved through the process?
-Use visual figures to illustrate the interface design. A series of sub-figures may be needed to illustrate interactive elements that cannot be communicated via a single static image. Reference every figure in the text.
-Discuss and critique your product using the design principles from the course. Make you of course topics and terminology, including but not limited to:
-Usability goals (e.g., efficiency, effectiveness, learnability, safety, utility)
-User Experience goals (e.g., enjoyable, not confusing)
-Discoverability
-Signifiers
-Mappings
-Conceptual Models
-Interface Metaphors
-Interaction Types: instrumenting, conversing, manipulating, exploring, responding
-For example, how did you use signifiers? What aspects of the design make the interface efficient? What is your conceptual model and how will users come up with a similar model?
-Evaluation Methodology (around 250-500 words) #
-Present your evaluation methodology, including:
-the type of evaluation
-the number of participants
-demographic information collected (need to justify participants are target users)
-tasks participants performed (i.e., procedure)
-data collected (quantitative and qualitative)
-how the data is analyzed
-Results (around 500-1000 words) #
-Present the results from your evaluation. For each data collection method, summarize your analysis of the findings. Don’t just present the raw data. Use charts for depicting quantitative data. Use quotes for evidencing qualitative experiential data. Present your results as a coherent narrative.
-Discussion (around 500-750 words) #
-Discuss the results from your evaluation. You should present a synthesis, based on your findings, of the lessons learned. Were you successful at meeting your target users’ needs and requirements? If so, what aspects of the interaction design led to this success. If not, what aspects of the interaction design led to failure. How would you redesign your product to address any failings. What advice would you give other interaction designers creating a similar product? What was unexpected?
-Grading Breakdown #
-Final Report (100 points) #
-Introduction [10 points]: Clear articulation of problems, activities, target users, and user requirements.
-Design [40 points]: Clear and precise explanation of interaction design choices. Good understanding of interaction design goals and principles. Accurate use of terminology. Improvements to product design from high-fidelity prototype.
-Evaluation [30 points]: Clear explanation of evaluation methodology and results. Appropriate evaluation methodology used. Good justification for data collection methods.
-Discussion [20 points]: Provides a synthesis of results that identifies lessons learned, successes and failures, and potential improvements. Uses design principles and findings as motivation or evidence for discussion points.
-Demo (Thursday, December 7 at 5:30 PM) #
-Bring a demo of your final product to the the final exam period. We will spend this time interacting with each other’s final product.
-1225 Patrick F. Taylor Building
-TR 9:00-10:20 AM
-
-Office Hours: Tuesday, 2:00–3:00 pm
-
-    */
       
-    let questions = [
+  /*
+      Darius Lewis 
+      CSC Interactive project. 
+  */
+    
+      let questions = [
       {
         // 1
         question: "What is anthropology?",
@@ -120,8 +22,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 2
-        question:
-          "Which of the following is a subfield of anthropology that focuses on the study of past human societies through excavation and analysis of artifacts?",
+        question: "Which of the following is a subfield of anthropology that focuses on the study" + "\n" + " of past human societies through excavation and analysis of artifacts?",
         options: [
           "Cultural anthropology",
           "Linguistic anthropology",
@@ -154,8 +55,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 5
-        question:
-          "In anthropology, what is the term for the process by which individuals learn and internalize the values and norms of their culture?",
+        question: "In anthropology, what is the term for the process by which individuals learn " + "\n" + "and internalize the values and norms of their culture?",
         options: [
           "Socialization",
           "Isolation",
@@ -204,8 +104,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 9
-        question:
-          "What term is used to describe the process of adapting to and adopting elements of another culture?",
+        question: "What term is used to describe the process of adapting to and adopting" + "\n" + " elements of another culture?",
         options: ["Acculturation", "Isolation", "Segregation", "Ethnocentrism"],
         correctOption: 0,
         hint: "It's the process of adapting to a different culture."
@@ -283,8 +182,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 16
-        question:
-          "What is the term for a system of communication using symbols, sounds, or gestures to convey meaning?",
+        question: "What is the term for a system of communication using symbols, sounds, or gestures" + "\n" + " to convey meaning?",
         options: [
           "Culture",
           "Language",
@@ -335,8 +233,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 20
-        question:
-          "In anthropology, what is the term for the practice of judging another culture by the standards of one's own culture?",
+        question: "In anthropology, what is the term for the practice of judging another culture" + "\n" + " by the standards of one's own culture?",
         options: [
           "Cultural relativism",
           "Ethnocentrism",
@@ -374,8 +271,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 23
-        question:
-          "Which subfield of anthropology explores the biological aspects of human beings, including evolution and genetics?",
+        question: "Which subfield of anthropology explores the biological aspects" + "\n" + " of human beings, including evolution and genetics?",
         options: [
           "Cultural anthropology",
           "Archaeology",
@@ -452,8 +348,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
       },
       {
         // 29
-        question:
-          "What term is used to describe a social system in which descent and inheritance are traced through the mother's line?",
+        question: "What term is used to describe a social system in which descent and inheritance" + "\n" + " are traced through the mother's line?",
         options: [
           "Matrilineal",
           "Patrilineal",
@@ -606,62 +501,59 @@ Office Hours: Tuesday, 2:00–3:00 pm
         correctOption: 1,
         hint: "It's a feature that exists in all cultures around the world."
       },
-    ];
+      ];
       
-        let backgroundMusic;
-        let backgroundImg, levelBackground;
+      let backgroundMusic;
+      let backgroundImg, levelBackground;
 
-        let hintButton;
-        let exitButton, playAgainButton; 
-        let remainingHints;
+      let hintButton;
+      let exitButton, playAgainButton; 
+      let remainingHints;
 
-        let playerName;
+      let playerName;
+      
+      let highestScore = 0;
+      let currentQuestion = 0;
+      let score = 0;
+      let streak = 0;
+      let streakTotal = 0
+      let streakCount = 0;
+      let longestStreak = 0;
+      let correctCount = 0;
+      let actualTotal = 0;
+      let levelCounter = 0; //
+      let gameRestarted = false;
+      let gameRestartedflag = false;
+      let timesPlayed = 1;
         
-        let highestScore = 0;
-        let currentQuestion = 0;
-        let score = 0;
-        let streak = 0;
-        let streakTotal = 0
-        let streakCount = 0;
-        let longestStreak = 0;
-        let correctCount = 0;
-        let actualTotal = 0;
-        let levelCounter = 0; //
-        let gameRestarted = false;
-        let gameRestartedflag = false;
-        let timesPlayed = 1;
-        
-        //Reset times --------------------------------------------------------------------------------------------------------------------------
-      
-        let timerTime = 7200; // 1800
-        let timerDuration = timerTime; // Timer Duration (60 Seonds)
-        let uneditedTimerDuration = timerDuration;
-        let timerBarWidth;
-      
-        let startTime;
-        let duration = 120000; // 30000
-      
-        // let extraCanvas;
-      
-        const GameState = {
-          Start: "Start",
-          LevelIntro: "Intro", 
-          Playing: "Playing",
-          Level2: "Doing worst than I thought Transition.",
-          Level3: "Sunset Transition", 
-          GameOver: "GameOver", 
-          Level4: "Lifetime stats", 
-          Level5: "Play again Exit Screen"
-        }; 
-      
-        let game = { maxTime : 0, state: GameState.Start }; 
-        let timer = game.maxTime;
+      //Reset times --------------------------------------------------------------------------------------------------------------------------
+    
+      let timerTime = 7200; // 1800
+      let timerDuration = timerTime; // Timer Duration (60 Seonds)
+      let uneditedTimerDuration = timerDuration;
+      let timerBarWidth;
+    
+      let startTime;
+      let duration = 120000; // 30000
+    
+      const GameState = {
+        Start: "Start",
+        LevelIntro: "Intro", 
+        Playing: "Playing",
+        Level2: "Doing worst than I thought Transition.",
+        Level3: "Sunset Transition", 
+        GameOver: "GameOver", 
+        Level4: "Lifetime stats", 
+        Level5: "Play again Exit Screen"
+      }; 
+    
+      let game = { maxTime : 0, state: GameState.Start }; 
+      let timer = game.maxTime;
       
       function preload() {
         backgroundMusic = loadSound('Music/BackgroundMusic.wav');
         backgroundImg = loadImage('Images/HourGlass.png');
-        levelBackground = loadImage('Images/Sunset.png');
-        
+        levelBackground = loadImage('Images/Sunset.png'); 
       }
       
       function setup() {
@@ -676,19 +568,22 @@ Office Hours: Tuesday, 2:00–3:00 pm
         remainingHints = 5;
 
         hintButton = createButton('Hint');
-        hintButton.position(windowWidth/10 - 110, windowHeight/2 + 355);
+        hintButton.position(windowWidth/2-600, windowHeight/2 - 315);
         hintButton.mousePressed(showHint);
-        hintButton.size(50,25);
+        hintButton.size(75,50);
+        hintButton.hide();
 
         exitButton = createButton('Exit');
         exitButton.position(windowWidth/5 + 850, windowHeight/2 + 300);
         exitButton.mousePressed(exit);
         exitButton.size(100,30);
+        exitButton.hide();
 
         playAgainButton = createButton('Play Again');
         playAgainButton.position(windowWidth/5 - 110, windowHeight/2 + 300);
         playAgainButton.mousePressed(playAgain);
         playAgainButton.size(100,30);
+        playAgainButton.hide();
 
         // backgroundMusic.loop();
       }
@@ -738,15 +633,13 @@ Office Hours: Tuesday, 2:00–3:00 pm
         
       }
       
-
       function draw() {
-
-        background(220);
-        fill(0);
-
 
         toggleHintButton();
         toggleOtherButton();
+
+        background(220);
+        fill(0);
       
         switch(game.state) {
 
@@ -759,6 +652,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           text("Anthropology Trivia", windowWidth/2, windowHeight/2);
           textSize(20);
           text("Press any key to continue", windowWidth/2, (windowHeight/2)+40);
+         
           
           break;
 
@@ -1070,49 +964,56 @@ Office Hours: Tuesday, 2:00–3:00 pm
 
       function mouseClicked() {
 
-        //Game state then do nothing  Not playing 
+        switch(game.state) {
+
+          case GameState.Playing:
             // Check if an option is clicked
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
-            const optionY = (windowHeight/4)+65+80-30 + i * 30;
-              if (mouseY > optionY && mouseY < optionY + 20) {
-              // Check if the clicked option is correct
-                if (i === questions[currentQuestion].correctOption) {
-                  score += 100;
-                  // console.log("Current Score: " + score);
-                  correctCount++;
-                  streakCount++;
-                  streak += (i * 50);
-                  // console.log("Current Streak: " + streak);
-                  streakTotal += streak;
-                  // console.log("Current Streak Total Amount: " +streakTotal);
-                } 
-                else {
-                  streak = 0;
-                  streakCount = 0;
-                }
-                
-                // Move to the next question
-                actualTotal = score + streakTotal;
-                checkHighestScore();
-                checkHighestStreak();
+              const optionY = (windowHeight/4)+65+80-30 + i * 30;
+                if (mouseY > optionY && mouseY < optionY + 20) {
+                // Check if the clicked option is correct
+                  if (i === questions[currentQuestion].correctOption) {
+                    score += 100;
+                    // console.log("Current Score: " + score);
+                    correctCount++;
+                    streakCount++;
+                    streak += (i * 50);
+                    // console.log("Current Streak: " + streak);
+                    streakTotal += streak;
+                    // console.log("Current Streak Total Amount: " +streakTotal);
+                  } 
+                  else {
+                    streak = 0;
+                    streakCount = 0;
+                  }
+                  
+                  // Move to the next question
+                  actualTotal = score + streakTotal;
+                  checkHighestScore();
+                  checkHighestStreak();
 
-                currentQuestion++;
-                // console.log("Current  Total Amount: " + actualTotal);
-      
-                if (currentQuestion == 10) {
-                    game.state = GameState.Level2;
-                }
-                else if (currentQuestion == 25) {
-                    game.state = GameState.Level3;
-                }
-                
-                // Check if there are more questions
-                if (currentQuestion === questions.length) {
-                // Display final score
-                alert(`Game Over! Your Score: ${actualTotal}`);
-                game.state = GameState.GameOver;
-            }
-          } 
+                  currentQuestion++;
+                  // console.log("Current  Total Amount: " + actualTotal);
+
+                  if (currentQuestion == 10) {
+                      game.state = GameState.Level2;
+                  }
+                  else if (currentQuestion == 25) {
+                      game.state = GameState.Level3;
+                  }
+                  
+                  // Check if there are more questions
+                  if (currentQuestion === questions.length) {
+                  // Display final score
+                  alert(`Game Over! Your Score: ${actualTotal}`);
+                  game.state = GameState.GameOver;
+              }
+            } 
+          }
+          break;
+          default:
+
+          break
         }
       }
       
@@ -1120,7 +1021,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
         switch (game.state) {
           case GameState.Start :
           
-            
             game.state = GameState.LevelIntro;
             // backgroundMusic.play();
             getPlayerName();
@@ -1130,7 +1030,6 @@ Office Hours: Tuesday, 2:00–3:00 pm
           
           case GameState.LevelIntro :
       
-            reset();
             game.state = GameState.Playing;
             levelCounter++;
       
@@ -1181,7 +1080,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
           alert(questions[currentQuestion].hint);
           remainingHints--;
         } else {
-          alert(playerName + " You have no more hints left!");
+          alert(playerName + "!!! You have no more hints left!");
         }
       }
 
@@ -1192,6 +1091,7 @@ Office Hours: Tuesday, 2:00–3:00 pm
 
       function exit() {
         resetGame();
+        backgroundMusic.stop();
         game.state = GameState.Start;
       }
 
