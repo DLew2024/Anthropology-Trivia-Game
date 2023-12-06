@@ -550,7 +550,7 @@
         Level5: "Play again Exit Screen"
       }; 
     
-      let game = { maxTime : 0, state: GameState.Start }; 
+      let game = { maxTime : 0, state: GameState.Playing }; 
       let timer = game.maxTime;
       
       function preload() {
@@ -622,8 +622,7 @@
       }
       
       function resetGame() {
-        timer = game.maxTime;
-        timerDuration = timerTime;
+        reset();
 
         highestScore = 0;
         currentQuestion = 0;
@@ -643,7 +642,6 @@
         resetLocalStorage();
 
         playerName = "";
-        remainingHints = 5;
         
       }
       
