@@ -1,10 +1,6 @@
-  // Remember to uncomment music --------------------------------------------------------------------------------------------
   // Reset times -------------------------------------------------------------------------------------------------------------
-  // Goal 8000
   // Reverse time
-  // Add background to Playing
-  // 
-      
+       
   /*
       Darius Lewis 
       CSC Interactive project. 
@@ -507,13 +503,17 @@
       ];
       
       let backgroundMusic;
-      let backgroundImg, levelBackground;
+      let backgroundImg, levelBackground, triviaBackground,
+      galaxyBackground, laserBackground, playAGbackground,
+      duskBackground, startBackground;
 
       let hintButton;
       let exitButton, playAgainButton; 
       let remainingHints;
+      let gameExited = false;
 
       let playerName;
+      let gameIsOver = false;
       
       let highestScore = 0;
       let currentQuestion = 0;
@@ -531,13 +531,13 @@
         
       //Reset times --------------------------------------------------------------------------------------------------------------------------
     
-      let timerTime = 7200; // 1800
+      let timerTime = 3600; // 1800
       let timerDuration = timerTime; // Timer Duration (60 Seonds)
       let uneditedTimerDuration = timerDuration;
       let timerBarWidth;
     
       let startTime;
-      let duration = 120000; // 30000
+      let duration = 60000; // 30000
     
       const GameState = {
         Start: "Start",
@@ -556,7 +556,14 @@
       function preload() {
         backgroundMusic = loadSound('Music/BackgroundMusic.wav');
         backgroundImg = loadImage('Images/HourGlass.png');
-        levelBackground = loadImage('Images/Sunset.png'); 
+        levelBackground = loadImage('Images/Tree.jpg'); 
+        triviaBackground = loadImage('Images/Trivia-game.jpg');
+        galaxyBackground = loadImage('Images/Galaxy.jpg');
+        laserBackground = loadImage('Images/Lasers.jpg');
+        playAGbackground = loadImage('Images/PlayAG.jpg');
+        duskBackground = loadImage('Images/Dusk.jpg');
+        startBackground = loadImage('Images/Start.jpg')
+
       }
       
       function setup() {
@@ -575,6 +582,7 @@
         hintButton.mousePressed(showHint);
         hintButton.size(75,50);
         hintButton.hide();
+        
 
         exitButton = createButton('Exit');
         exitButton.position(windowWidth/5 + 850, windowHeight/2 + 300);
@@ -588,7 +596,7 @@
         playAgainButton.size(100,30);
         playAgainButton.hide();
 
-        // backgroundMusic.loop();
+        backgroundMusic.loop();
       }
       
       function reset() {
@@ -610,6 +618,7 @@
         remainingHints = 5;
         gameRestarted = true;
         gameRestartedflag = true;
+        gameIsOver = false;
       }
       
       function resetGame() {
@@ -629,6 +638,8 @@
         gameRestarted = false;
         gameRestartedflag = false;
         timesPlayed = 1;
+        gameIsOver = false;
+        gameExited = true;
         resetLocalStorage();
 
         playerName = "";
@@ -641,6 +652,10 @@
         toggleHintButton();
         toggleOtherButton();
 
+        if (gameIsOver) {
+          backgroundMusic.stop();
+        }
+
         background(220);
         fill(0);
       
@@ -648,7 +663,9 @@
 
           case GameState.Start:
       
-          background(0);
+          background(startBackground);
+          stroke(0);
+          strokeWeight(4.5);
           fill(255);
           textSize(50);
           textAlign(CENTER);
@@ -660,8 +677,13 @@
           break;
 
           case GameState.LevelIntro:
-      
-          background(0);
+          
+          if (gameExited) {
+            startMusic();
+          }
+          background(duskBackground);
+          stroke(0);
+          strokeWeight(5);
           fill(255);
           textSize(50);
           textAlign(CENTER);
@@ -671,7 +693,7 @@
       
           text("HAAA HAAA Try me !!! HAAA HAA", windowWidth/2, (windowHeight/2)+20);
           
-          text("Lets see if you can even beat this score: 2000", windowWidth/2, (windowHeight/2)+55);
+          text("Lets see if you can even beat this score: 8000", windowWidth/2, (windowHeight/2)+60);
       
           text("Now press any key to start", windowWidth/2, (windowHeight/2)+105);
 
@@ -679,7 +701,9 @@
       
           case GameState.Playing: 
 
-          background(220);
+          console.log(levelCounter);
+
+          background(triviaBackground);
           // Transparent Background 
           fill(0, 0, 0, 220);
           rect(windowWidth/2-465, windowHeight/2-315, 900, 50, 50);
@@ -695,12 +719,16 @@
             timerBarWidth = map(timerDuration, 0, uneditedTimerDuration, 0, 800);
           }
           // Moving white bar
-          if (timer <= 20) {
+          if (timer < 30) {
             fill(255);
           }
           else {
             let c = color('rgb(255, 172, 28)');
             fill(c);
+            if (timer <= 60 && timer >= 50) {
+              c = color('rgb(255, 0, 0)');
+              fill(c);
+            }
           }
           rect(windowWidth/2-400, windowHeight/2-300, timerBarWidth, 20, 20);
           // Timer number 
@@ -708,6 +736,7 @@
           text("" + timer, windowWidth/2-415, windowHeight/2-280);
           if (frameCount % 60 == 0 && timer >= 0) { timer++; }
           //Hourglass
+          fill(255);
           image(backgroundImg, windowWidth/2-550, windowHeight/2-340, 100, 105);
           
         if ((levelCounter == 2 && !gameRestarted || gameRestarted)) {
@@ -717,6 +746,7 @@
             }
             else if (levelCounter == 2 && gameRestarted == true && gameRestartedflag == true) {
               reset();
+              backgroundMusic.loop();
               console.log("The game just restarted.");
               timesPlayed++;
               localStorage.setItem("replays", timesPlayed);
@@ -734,37 +764,23 @@
           fill(150, 150, 150, 100); 
           rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
 
-          textAlign(LEFT);
           // Questions Text
-          fill(0);
+          textAlign(LEFT);
           textSize(30);
-          strokeWeight(0);
-          fill(0);
-          // Old circle that used to be in the middle
-          // circle(windowWidth/2, windowHeight/2, 10);
+          strokeWeight(5);
+          fill(255);
           text(questions[currentQuestion].question, 20, windowHeight/4+90-50);
           
           // Options Text
           for (let i = 0; i < questions[currentQuestion].options.length; i++) {
-            // Draws a rectangle for an visual rep of option
-            stroke(0);
-            strokeWeight(4);
-            fill(255, 255, 255);
-            // Location 
-            let x = 50;
-            let y = (windowHeight/4)+65+80-30 + i * 30;
-            let width = windowWidth/2+100;
-            let height = 30;
-            rect(x, y, width, height);
-            // Ends here
             // Text reset
-            fill(0);
-            strokeWeight(0);
+            fill(255);
+            strokeWeight(5);
             // Options for text (Answer choices)
             text(`${i + 1}. ${questions[currentQuestion].options[i]}`, 20, (windowHeight/4)+90+80-30 + i * 30);
           }
 
-          fill(0);
+          fill(255);
 
           text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
     
@@ -788,7 +804,7 @@
       
           case GameState.Level2: 
       
-          background(0);
+          background(galaxyBackground);
           fill(255);
           if (actualTotal <= 700) {
             textSize(50);
@@ -836,13 +852,17 @@
 
           case GameState.Level4: // Lifetime stats
 
-          background(0);
+          background(laserBackground);
           fill(255);
           textSize(50);
+          stroke(0);
+          strokeWeight(5);
           textAlign(CENTER);
           textStyle(BOLD);
           text("Lifetime Stats", windowWidth/2, windowHeight/2-150);
           resetAttributes();
+          stroke(0);
+          strokeWeight(3);
           text("Highest Score", windowWidth/2-400, (windowHeight/2)-20);
           textAlign(RIGHT);
           text(`${highestScore}`, windowWidth/2+300, (windowHeight/2)-20);
@@ -853,7 +873,8 @@
           line(windowWidth/2-400, (windowHeight/2)-10, windowWidth/2+300, (windowHeight/2)-10);
           stroke(255);
           resetAttributes();
-      
+          stroke(0);
+          strokeWeight(3);
           text("Longest Streak", windowWidth/2-400, (windowHeight/2)+20);
           textAlign(RIGHT);
           text(`${longestStreak}`, windowWidth/2+300, (windowHeight/2)+20);
@@ -864,28 +885,34 @@
 
           line(windowWidth/2-400, (windowHeight/2)+30, windowWidth/2+300, (windowHeight/2)+30);
           resetAttributes();
-          
+          stroke(0);
+          strokeWeight(3);
           text("Times Played", windowWidth/2-400, (windowHeight/2)+60);
           textAlign(RIGHT);
           text(`${timesPlayed}`, windowWidth/2+300, (windowHeight/2)+60);
           
           stroke(255, 0, 0); 
           strokeWeight(2); 
-
+          
           line(windowWidth/2-400, (windowHeight/2)+70, windowWidth/2+300, (windowHeight/2)+70);
           resetAttributes();
-      
+          stroke(0);
+          strokeWeight(3);
           text("Press any key to continue", windowWidth/2-100, (windowHeight/2)+205);
           break;
 
           case GameState.Level5: // Play again or back to the begining
-
-          background(0);
+          gameOver();
+          background(playAGbackground);
           fill(255);
+          stroke(0);
+          strokeWeight(15);
           textAlign(CENTER);
+      
           textSize(140);
           text("Play Again ?", windowWidth/2, windowHeight/2-180);
-          textSize(20);
+          strokeWeight(5);
+          textSize(40);
           text(`Well, ${playerName} I guess I'll see you on the other side Trivia Traveler.`, windowWidth/2, windowHeight/2+25);
           
           break;
@@ -925,17 +952,16 @@
                   currentQuestion++;
                   // console.log("Current  Total Amount: " + actualTotal);
 
-                  if (currentQuestion == 10) {
+                  if (currentQuestion == 10 && (levelCounter < 3)) {
                       game.state = GameState.Level2;
                   }
-                  else if (currentQuestion == 25) {
+                  else if (currentQuestion == 25 && (levelCounter < 4)) {
                       game.state = GameState.Level3;
                   }
                   
                   // Check if there are more questions
                   if (currentQuestion === questions.length) {
-                  // Display final score
-                  alert(`Game Over! Your Score: ${actualTotal}`);
+                  // Display final score];
                   game.state = GameState.GameOver;
               }
             } 
@@ -1100,4 +1126,17 @@
         localStorage.removeItem("replays");
         localStorage.removeItem("longestStreak");
         localStorage.removeItem("highestScore");
+      }
+
+      function gameOver() {
+        gameIsOver = true;
+      }
+
+      function startMusic() {
+        backgroundMusic.loop();
+        gameExited = false;
+      }
+
+      function exitedGame() {
+        gameExited = true;
       }
