@@ -1,6 +1,9 @@
   // Remember to uncomment music --------------------------------------------------------------------------------------------
   // Reset times -------------------------------------------------------------------------------------------------------------
   // Goal 8000
+  // Reverse time
+  // Add background to Playing
+  // 
       
   /*
       Darius Lewis 
@@ -674,7 +677,7 @@
 
           break;
       
-          case GameState.Playing:
+          case GameState.Playing: 
 
           background(220);
           // Transparent Background 
@@ -760,42 +763,11 @@
             // Options for text (Answer choices)
             text(`${i + 1}. ${questions[currentQuestion].options[i]}`, 20, (windowHeight/4)+90+80-30 + i * 30);
           }
-            
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+          fill(0);
+
+          text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
+    
           if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
             switch (levelCounter) {
               case 2: // old 0
@@ -809,51 +781,12 @@
               case 4:
                 game.state = GameState.GameOver           
                 break;
-              // case 5:
-              //   game.state = GameState.Level4 
-              // break;
             }
           }
-
-      
-          fill(0);
-
-          text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
-
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+  
           break;
       
-          case GameState.Level2:
+          case GameState.Level2: 
       
           background(0);
           fill(255);
@@ -914,10 +847,9 @@
           textAlign(RIGHT);
           text(`${highestScore}`, windowWidth/2+300, (windowHeight/2)-20);
 
-          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
-          strokeWeight(2); // Set the stroke weight
+          stroke(255, 0, 0); 
+          strokeWeight(2); 
 
-          // Draw a line from (50, 50) to (350, 350)
           line(windowWidth/2-400, (windowHeight/2)-10, windowWidth/2+300, (windowHeight/2)-10);
           stroke(255);
           resetAttributes();
@@ -927,10 +859,9 @@
           text(`${longestStreak}`, windowWidth/2+300, (windowHeight/2)+20);
 
 
-          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
-          strokeWeight(2); // Set the stroke weight
+          stroke(255, 0, 0); 
+          strokeWeight(2);
 
-          // Draw a line from (50, 50) to (350, 350)
           line(windowWidth/2-400, (windowHeight/2)+30, windowWidth/2+300, (windowHeight/2)+30);
           resetAttributes();
           
@@ -938,10 +869,9 @@
           textAlign(RIGHT);
           text(`${timesPlayed}`, windowWidth/2+300, (windowHeight/2)+60);
           
-          stroke(255, 0, 0); // Set stroke color to red (R, G, B)
-          strokeWeight(2); // Set the stroke weight
+          stroke(255, 0, 0); 
+          strokeWeight(2); 
 
-          // Draw a line from (50, 50) to (350, 350)
           line(windowWidth/2-400, (windowHeight/2)+70, windowWidth/2+300, (windowHeight/2)+70);
           resetAttributes();
       
@@ -1022,7 +952,6 @@
           case GameState.Start :
           
             game.state = GameState.LevelIntro;
-            // backgroundMusic.play();
             getPlayerName();
             levelCounter++;
       
@@ -1032,10 +961,6 @@
       
             game.state = GameState.Playing;
             levelCounter++;
-      
-          break;
-      
-          case GameState.Playing :
       
           break;
       
@@ -1068,10 +993,6 @@
           levelCounter++;
         
           break;
-          
-          case GameState.Level5 :
-          
-          break;
         }  
       }
 
@@ -1091,7 +1012,6 @@
 
       function exit() {
         resetGame();
-        backgroundMusic.stop();
         game.state = GameState.Start;
       }
 
@@ -1181,5 +1101,3 @@
         localStorage.removeItem("longestStreak");
         localStorage.removeItem("highestScore");
       }
-  
-
