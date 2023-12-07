@@ -788,19 +788,14 @@
               case 2: // old 0
                 game.state = GameState.Level2;
                 levelCounter++;
-                console.log(levelCounter);
                 break;
               case 3:
                 game.state = GameState.Level3;
                 levelCounter++;
-                console.log(levelCounter);
-
                 break;
               case 4:
                 game.state = GameState.GameOver 
                 levelCounter++;
-                console.log(levelCounter);
-
                 break;
             }
           }
@@ -933,16 +928,12 @@
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
               const optionY = (windowHeight/4)+65+80-30 + i * 30;
                 if (mouseY > optionY && mouseY < optionY + 20) {
-                // Check if the clicked option is correct
                   if (i === questions[currentQuestion].correctOption) {
                     score += 100;
-                    // console.log("Current Score: " + score);
                     correctCount++;
                     streakCount++;
                     streak += (i * 50);
-                    // console.log("Current Streak: " + streak);
                     streakTotal += streak;
-                    // console.log("Current Streak Total Amount: " +streakTotal);
                   } 
                   else {
                     streak = 0;
@@ -964,17 +955,12 @@
                       game.state = GameState.Level3;
                   }
                   
-                  // Check if there are more questions
                   if (currentQuestion === questions.length) {
-                  // Display final score];
                   game.state = GameState.GameOver;
               }
             } 
           }
           break;
-          default:
-
-          break
         }
       }
       
@@ -1085,20 +1071,19 @@
       }
       
       function loadHighestScore() {
-        // Load the highest score from localStorage
+        
         let savedHighestScore = localStorage.getItem("highestScore");
 
-        // Check if a highest score exists in localStorage
+        
         if (savedHighestScore !== null) {
           highestScore = int(savedHighestScore);
         }
       }
 
       function checkHighestScore() {
-        // Check if the current score is higher than the highest score
+        
         if (actualTotal > highestScore) {
           highestScore = actualTotal;
-          // Save the new highest score to localStorage
           localStorage.setItem("highestScore", highestScore);
         }
       }
@@ -1111,10 +1096,8 @@
       }
 
       function checkHighestStreak() {
-        // Check if the current score is higher than the highest score
         if ( streakCount > longestStreak) {
           longestStreak = streakCount;
-          // Save the new highest score to localStorage
           localStorage.setItem("longestStreak", longestStreak);
         }
       }
@@ -1127,7 +1110,6 @@
       }
 
       function resetLocalStorage() {
-        // Remove the triviaScore and highestScore items from local storage
         localStorage.removeItem("replays");
         localStorage.removeItem("longestStreak");
         localStorage.removeItem("highestScore");
