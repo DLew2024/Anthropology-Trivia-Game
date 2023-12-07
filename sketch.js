@@ -550,7 +550,7 @@
         Level5: "Play again Exit Screen"
       }; 
     
-      let game = { maxTime : 0, state: GameState.Playing }; 
+      let game = { maxTime : 0, state: GameState.Start }; 
       let timer = game.maxTime;
       
       function preload() {
@@ -600,7 +600,7 @@
       }
       
       function reset() {
-        timer = game.maxTime;
+        timer = 55;
         timerDuration = timerTime;
         remainingHints = 5;
       }
@@ -699,8 +699,6 @@
       
           case GameState.Playing: 
 
-          console.log(levelCounter);
-
           background(triviaBackground);
           // Transparent Background 
           fill(0, 0, 0, 220);
@@ -783,20 +781,18 @@
           textAlign(RIGHT);
           text(`${actualTotal}`, (windowWidth*11/12)+100, windowHeight - 25);
     
-          if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
-            switch (levelCounter) {
-              case 2: // old 0
+          if (timer == 60) { // Reset to 30 for final -----
+            if (levelCounter < 3) {
                 game.state = GameState.Level2;
                 levelCounter++;
-                break;
-              case 3:
-                game.state = GameState.Level3;
-                levelCounter++;
-                break;
-              case 4:
-                game.state = GameState.GameOver 
-                levelCounter++;
-                break;
+            }
+            else if (levelCounter < 4) {
+              game.state = GameState.Level3;
+              levelCounter++;
+            }
+            else if (levelCounter < 5) {
+              game.state = GameState.GameOver;
+              levelCounter++;
             }
           }
   
