@@ -600,7 +600,7 @@
       }
       
       function reset() {
-        timer = game.maxTime;
+        timer = 55;
         timerDuration = timerTime;
         remainingHints = 5;
       }
@@ -622,8 +622,7 @@
       }
       
       function resetGame() {
-        timer = game.maxTime;
-        timerDuration = timerTime;
+        reset();
 
         highestScore = 0;
         currentQuestion = 0;
@@ -643,7 +642,6 @@
         resetLocalStorage();
 
         playerName = "";
-        remainingHints = 5;
         
       }
       
@@ -701,8 +699,6 @@
       
           case GameState.Playing: 
 
-          console.log(levelCounter);
-
           background(triviaBackground);
           // Transparent Background 
           fill(0, 0, 0, 220);
@@ -756,13 +752,13 @@
           
           // Draw a rectangular bubble shape
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100); 
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
 
           // Questions Text
           textAlign(LEFT);
@@ -781,22 +777,22 @@
           }
 
           fill(255);
-
-          text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
+          text("Score: ", (windowWidth*11/12)-100, windowHeight - 25);
+          textAlign(RIGHT);
+          text(`${actualTotal}`, (windowWidth*11/12)+100, windowHeight - 25);
     
-          if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
-            switch (levelCounter) {
-              case 2: // old 0
+          if (timer == 60) { // Reset to 30 for final -----
+            if (levelCounter < 3) {
                 game.state = GameState.Level2;
                 levelCounter++;
-                break;
-              case 3:
-                game.state = GameState.Level3;
-                levelCounter++;
-                break;
-              case 4:
-                game.state = GameState.GameOver           
-                break;
+            }
+            else if (levelCounter < 4) {
+              game.state = GameState.Level3;
+              levelCounter++;
+            }
+            else if (levelCounter < 5) {
+              game.state = GameState.GameOver;
+              levelCounter++;
             }
           }
   
@@ -928,16 +924,12 @@
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
               const optionY = (windowHeight/4)+65+80-30 + i * 30;
                 if (mouseY > optionY && mouseY < optionY + 20) {
-                // Check if the clicked option is correct
                   if (i === questions[currentQuestion].correctOption) {
                     score += 100;
-                    // console.log("Current Score: " + score);
                     correctCount++;
                     streakCount++;
                     streak += (i * 50);
-                    // console.log("Current Streak: " + streak);
                     streakTotal += streak;
-                    // console.log("Current Streak Total Amount: " +streakTotal);
                   } 
                   else {
                     streak = 0;
@@ -959,17 +951,12 @@
                       game.state = GameState.Level3;
                   }
                   
-                  // Check if there are more questions
                   if (currentQuestion === questions.length) {
-                  // Display final score];
                   game.state = GameState.GameOver;
               }
             } 
           }
           break;
-          default:
-
-          break
         }
       }
       
@@ -1080,20 +1067,19 @@
       }
       
       function loadHighestScore() {
-        // Load the highest score from localStorage
+        
         let savedHighestScore = localStorage.getItem("highestScore");
 
-        // Check if a highest score exists in localStorage
+        
         if (savedHighestScore !== null) {
           highestScore = int(savedHighestScore);
         }
       }
 
       function checkHighestScore() {
-        // Check if the current score is higher than the highest score
+        
         if (actualTotal > highestScore) {
           highestScore = actualTotal;
-          // Save the new highest score to localStorage
           localStorage.setItem("highestScore", highestScore);
         }
       }
@@ -1106,10 +1092,8 @@
       }
 
       function checkHighestStreak() {
-        // Check if the current score is higher than the highest score
         if ( streakCount > longestStreak) {
           longestStreak = streakCount;
-          // Save the new highest score to localStorage
           localStorage.setItem("longestStreak", longestStreak);
         }
       }
@@ -1122,7 +1106,6 @@
       }
 
       function resetLocalStorage() {
-        // Remove the triviaScore and highestScore items from local storage
         localStorage.removeItem("replays");
         localStorage.removeItem("longestStreak");
         localStorage.removeItem("highestScore");
