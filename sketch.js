@@ -503,8 +503,6 @@
       let backgroundImg, levelBackground, triviaBackground,
           galaxyBackground, laserBackground, playAGbackground,
           duskBackground, startBackground;
-        
-      let o;
 
       let hintButton, exitButton, playAgainButton; 
       let remainingHints;
@@ -1180,5 +1178,3 @@
           resetTimer();
         }
       }
-
-      
