@@ -1,6 +1,3 @@
-  // Reset times -------------------------------------------------------------------------------------------------------------
-  // Reverse time
-       
   /*
       Darius Lewis 
       CSC Interactive project. 
@@ -504,12 +501,12 @@
       
       let backgroundMusic;
       let backgroundImg, levelBackground, triviaBackground,
-      galaxyBackground, laserBackground, playAGbackground,
-      duskBackground, startBackground;
+          galaxyBackground, laserBackground, playAGbackground,
+          duskBackground, startBackground;
 
-      let hintButton;
-      let exitButton, playAgainButton; 
+      let hintButton, exitButton, playAgainButton; 
       let remainingHints;
+
       let gameExited = false;
 
       let playerName;
@@ -528,16 +525,7 @@
       let gameRestarted = false;
       let gameRestartedflag = false;
       let timesPlayed = 1;
-        
-      //Reset times --------------------------------------------------------------------------------------------------------------------------
-    
-      let timerTime = 3600; // 1800
-      let timerDuration = timerTime; // Timer Duration (60 Seonds)
-      let uneditedTimerDuration = timerDuration;
-      let timerBarWidth;
-    
-      let startTime;
-      let duration = 60000; // 30000
+            
     
       const GameState = {
         Start: "Start",
@@ -550,10 +538,14 @@
         Level5: "Play again Exit Screen"
       }; 
     
-      let game = { maxTime : 0, state: GameState.Start }; 
-      let timer = game.maxTime;
+      let game = { maxTime : 60, state: GameState.Start }; 
+
+      let timerDuration = game.maxTime;
+      let timer;
+      let isTimerActive = false;
       
       function preload() {
+
         backgroundMusic = loadSound('Music/BackgroundMusic.wav');
         backgroundImg = loadImage('Images/HourGlass.png');
         levelBackground = loadImage('Images/Tree.jpg'); 
@@ -568,6 +560,7 @@
       
       function setup() {
         createCanvas(windowWidth, windowHeight);
+        
         textSize(16);
         resetLocalStorage();
 
@@ -582,7 +575,6 @@
         hintButton.mousePressed(showHint);
         hintButton.size(75,50);
         hintButton.hide();
-        
 
         exitButton = createButton('Exit');
         exitButton.position(windowWidth/5 + 850, windowHeight/2 + 300);
@@ -599,14 +591,17 @@
         backgroundMusic.loop();
       }
       
-      function reset() {
-        timer = 55;
-        timerDuration = timerTime;
+      function levelReset() {
         remainingHints = 5;
+        resetTimer();
+      }
+
+      function gameOverTimerReset() {
+        resetTimer();
       }
 
       function playAgainReset() {
-        reset();
+        
         currentQuestion = 0;
         levelCounter = 2;
         score = 0; 
@@ -615,15 +610,14 @@
         streakTotal = 0;
         streakCount = 0
         actualTotal = 0;
-        remainingHints = 5;
         gameRestarted = true;
         gameRestartedflag = true;
         gameIsOver = false;
+        
       }
       
       function resetGame() {
-        reset();
-
+        
         highestScore = 0;
         currentQuestion = 0;
         score = 0; 
@@ -632,16 +626,18 @@
         streakCount = 0
         longestStreak = 0;
         correctCount = 0;
+        remainingHints = 5;
         actualTotal = 0;
         levelCounter = 0;
+        timesPlayed = 1;
         gameRestarted = false;
         gameRestartedflag = false;
-        timesPlayed = 1;
         gameIsOver = false;
         gameExited = true;
         resetLocalStorage();
-
+        
         playerName = "";
+        remainingHints = 5;
         
       }
       
@@ -671,7 +667,6 @@
           textSize(20);
           text("Press any key to continue", windowWidth/2, (windowHeight/2)+40);
          
-          
           break;
 
           case GameState.LevelIntro:
@@ -698,7 +693,7 @@
           break;
       
           case GameState.Playing: 
-
+          
           background(triviaBackground);
           // Transparent Background 
           fill(0, 0, 0, 220);
@@ -710,38 +705,41 @@
           strokeWeight(2);
           stroke(0);
           rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
-          if (timerDuration > 0) {
-            timerDuration -= 1;
-            timerBarWidth = map(timerDuration, 0, uneditedTimerDuration, 0, 800);
-          }
-          // Moving white bar
-          if (timer < 30) {
+        
+
+          let timerBarWidth = map(timerDuration, 0, 600, 0, 8000);
+
+          if (timerDuration > 30) {
             fill(255);
           }
           else {
             let c = color('rgb(255, 172, 28)');
             fill(c);
-            if (timer <= 60 && timer >= 50) {
+            if (timerDuration >= 0 && timerDuration <= 10) {
               c = color('rgb(255, 0, 0)');
               fill(c);
             }
           }
+          // Countdown bar
           rect(windowWidth/2-400, windowHeight/2-300, timerBarWidth, 20, 20);
           // Timer number 
           textAlign(RIGHT);
-          text("" + timer, windowWidth/2-415, windowHeight/2-280);
-          if (frameCount % 60 == 0 && timer >= 0) { timer++; }
+
+          text(`${timerDuration}`, windowWidth/2-415, windowHeight/2-280);
+          
           //Hourglass
           fill(255);
           image(backgroundImg, windowWidth/2-550, windowHeight/2-340, 100, 105);
+        
           
         if ((levelCounter == 2 && !gameRestarted || gameRestarted)) {
             if ((levelCounter == 2 && gameRestarted == false) && gameRestartedflag == false) {
-              console.log("The game just started.");  
-              gameRestartedflag = true;           
+              console.log("The game just started."); 
+              gameRestartedflag = true; 
+              
             }
             else if (levelCounter == 2 && gameRestarted == true && gameRestartedflag == true) {
-              reset();
+              resumeTimer();
               backgroundMusic.loop();
               console.log("The game just restarted.");
               timesPlayed++;
@@ -780,20 +778,22 @@
           text("Score: ", (windowWidth*11/12)-100, windowHeight - 25);
           textAlign(RIGHT);
           text(`${actualTotal}`, (windowWidth*11/12)+100, windowHeight - 25);
-    
-          if (timer == 60) { // Reset to 30 for final -----
-            if (levelCounter < 3) {
-                game.state = GameState.Level2;
+          
+          if (timerDuration < 1) { // Reset to 30 for final -----
+              if (levelCounter < 3) {
+                  game.state = GameState.Level2;
+                  levelCounter++;
+              }
+              else if (levelCounter < 4) {
+                game.state = GameState.Level3;
                 levelCounter++;
-            }
-            else if (levelCounter < 4) {
-              game.state = GameState.Level3;
-              levelCounter++;
-            }
-            else if (levelCounter < 5) {
-              game.state = GameState.GameOver;
-              levelCounter++;
-            }
+              }
+              else if (levelCounter < 5) {
+                //Last pausing of gmme
+                pauseTimer();
+                game.state = GameState.GameOver;
+                levelCounter++;
+              }
           }
   
           break;
@@ -818,6 +818,7 @@
           break;
       
           case GameState.Level3:
+
           background(levelBackground);
           fill(255);
           textAlign(CENTER);
@@ -826,9 +827,12 @@
           textSize(20);
           text("I saved the worst for last. Good luck ;}", windowWidth/2, (windowHeight/2)+40);
           text("Press any key to continue ", windowWidth/2, (windowHeight/2)+165);
+          
           break;
       
           case GameState.GameOver:
+
+          gameOver();
           
           background(0);
           fill(255);
@@ -847,7 +851,7 @@
           break;
 
           case GameState.Level4: // Lifetime stats
-
+          
           background(laserBackground);
           fill(255);
           textSize(50);
@@ -875,7 +879,6 @@
           textAlign(RIGHT);
           text(`${longestStreak}`, windowWidth/2+300, (windowHeight/2)+20);
 
-
           stroke(255, 0, 0); 
           strokeWeight(2);
 
@@ -898,7 +901,7 @@
           break;
 
           case GameState.Level5: // Play again or back to the begining
-          gameOver();
+          
           background(playAGbackground);
           fill(255);
           stroke(0);
@@ -922,14 +925,18 @@
           case GameState.Playing:
             // Check if an option is clicked
             for (let i = 0; i < questions[currentQuestion].options.length; i++) {
-              const optionY = (windowHeight/4)+65+80-30 + i * 30;
+              const optionY = (windowHeight/4) + 65 + 80 - 30 + i * 30;
                 if (mouseY > optionY && mouseY < optionY + 20) {
+                // Check if the clicked option is correct
                   if (i === questions[currentQuestion].correctOption) {
                     score += 100;
+                    // console.log("Current Score: " + score);
                     correctCount++;
                     streakCount++;
                     streak += (i * 50);
+                    // console.log("Current Streak: " + streak);
                     streakTotal += streak;
+                    // console.log("Current Streak Total Amount: " +streakTotal);
                   } 
                   else {
                     streak = 0;
@@ -946,12 +953,17 @@
 
                   if (currentQuestion == 10 && (levelCounter < 3)) {
                       game.state = GameState.Level2;
+                      pauseTimer();
                   }
                   else if (currentQuestion == 25 && (levelCounter < 4)) {
                       game.state = GameState.Level3;
+                      pauseTimer();
                   }
                   
-                  if (currentQuestion === questions.length) {
+                  // Check if there are more questions
+                  if (currentQuestion === questions.length && (levelCounter < 5)) {
+                  // Display final score];
+                  pauseTimer();
                   game.state = GameState.GameOver;
               }
             } 
@@ -971,7 +983,11 @@
           break;
           
           case GameState.LevelIntro :
-      
+
+            // First Initial timer start
+             if (!isTimerActive) {
+              startTimer();
+            }
             game.state = GameState.Playing;
             levelCounter++;
       
@@ -979,7 +995,8 @@
       
           case GameState.Level2 :
       
-            reset();
+            levelReset();
+            resumeTimer();
             game.state = GameState.Playing;
             levelCounter++;
       
@@ -987,7 +1004,8 @@
       
           case GameState.Level3 :
       
-            reset();
+            levelReset();
+            resumeTimer();
             game.state = GameState.Playing;
             levelCounter++;
       
@@ -995,6 +1013,7 @@
       
           case GameState.GameOver :
             
+            gameOverTimerReset(); // Set things back
             game.state = GameState.Level4;
             levelCounter++;
           
@@ -1045,8 +1064,9 @@
               playAgainButton.show();
             break;
             default :
-            exitButton.hide(); 
-            playAgainButton.hide(); 
+              exitButton.hide(); 
+              playAgainButton.hide(); 
+            break;
         }
       }
 
@@ -1067,17 +1087,13 @@
       }
       
       function loadHighestScore() {
-        
         let savedHighestScore = localStorage.getItem("highestScore");
-
-        
         if (savedHighestScore !== null) {
           highestScore = int(savedHighestScore);
         }
       }
 
       function checkHighestScore() {
-        
         if (actualTotal > highestScore) {
           highestScore = actualTotal;
           localStorage.setItem("highestScore", highestScore);
@@ -1113,6 +1129,9 @@
 
       function gameOver() {
         gameIsOver = true;
+        if(isTimerActive){
+          pauseTimer(); 
+        }
       }
 
       function startMusic() {
@@ -1122,4 +1141,40 @@
 
       function exitedGame() {
         gameExited = true;
+      }
+
+      function startTimer() {
+        timer = setInterval(updateTimer, 1000);
+        isTimerActive = true;
+        // timerActive = true;
+        console.log("timer started");
+      }
+
+      function resetTimer() {
+        timerDuration = game.maxTime;
+        isTimerActive = false;
+        console.log("timer reset");
+      }
+
+      function pauseTimer() {
+        clearInterval(timer);
+        isTimerActive = false;
+        console.log("timer paused");
+      }
+      
+      function resumeTimer() {
+        if (!isTimerActive) {
+          startTimer();
+        }
+      }
+
+      function updateTimer() {
+        timerDuration--;
+        console.log(timerDuration);
+      
+        if (timerDuration === 0) {
+          clearInterval(timer);
+
+          resetTimer();
+        }
       }
