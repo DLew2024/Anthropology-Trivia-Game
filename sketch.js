@@ -793,7 +793,8 @@
                 levelCounter++;
                 break;
               case 4:
-                game.state = GameState.GameOver           
+                game.state = GameState.GameOver 
+                levelCounter++;     
                 break;
             }
           }
