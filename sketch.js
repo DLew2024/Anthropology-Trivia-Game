@@ -754,13 +754,13 @@
           
           // Draw a rectangular bubble shape
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100); 
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100); 
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
           fill(150, 150, 150, 100); 
-          rect(windowWidth*11/12-75, windowHeight - 60, 190, 50, 100);
+          rect(windowWidth*11/12-110, windowHeight - 60, 220, 50, 100);
 
           // Questions Text
           textAlign(LEFT);
@@ -779,22 +779,28 @@
           }
 
           fill(255);
-
-          text(`Score: ${actualTotal}`, (windowWidth*11/12)-60, windowHeight - 25);
+          text("Score: ", (windowWidth*11/12)-100, windowHeight - 25);
+          textAlign(RIGHT);
+          text(`${actualTotal}`, (windowWidth*11/12)+100, windowHeight - 25);
     
           if (timer == 60) { // Reset to 30 for final ----------------------------------------------------------------
             switch (levelCounter) {
               case 2: // old 0
                 game.state = GameState.Level2;
                 levelCounter++;
+                console.log(levelCounter);
                 break;
               case 3:
                 game.state = GameState.Level3;
                 levelCounter++;
+                console.log(levelCounter);
+
                 break;
               case 4:
                 game.state = GameState.GameOver 
-                levelCounter++;     
+                levelCounter++;
+                console.log(levelCounter);
+
                 break;
             }
           }
