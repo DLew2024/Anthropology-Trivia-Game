@@ -2,7 +2,7 @@
       Darius Lewis 
       CSC Interactive project. 
   */
-    
+      // Questions
       let questions = [
       {
         // 1
@@ -499,32 +499,39 @@
       },
       ];
       
+      // Music
       let backgroundMusic;
+
       let backgroundImg, levelBackground, triviaBackground,
           galaxyBackground, laserBackground, playAGbackground,
           duskBackground, startBackground;
 
+      // Buttons
       let hintButton, exitButton, playAgainButton; 
+      
       let remainingHints;
 
-      let gameExited = false;
-
       let playerName;
-      let gameIsOver = false;
       
+      let timesPlayed = 1;
+
       let highestScore = 0;
       let currentQuestion = 0;
       let score = 0;
+
       let streak = 0;
       let streakTotal = 0
       let streakCount = 0;
       let longestStreak = 0;
+
       let correctCount = 0;
       let actualTotal = 0;
-      let levelCounter = 0; //
+      let levelCounter = 0; 
+      
       let gameRestarted = false;
       let gameRestartedflag = false;
-      let timesPlayed = 1;
+      let gameIsOver = false;
+      let gameExited = false;
             
     
       const GameState = {
@@ -543,6 +550,8 @@
       let timerDuration = game.maxTime;
       let timer;
       let isTimerActive = false;
+      let barTimerNumberOG = timerDuration * 60;
+      let barTimerNumber = barTimerNumberOG;
       
       function preload() {
 
@@ -705,9 +714,10 @@
           strokeWeight(2);
           stroke(0);
           rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
-        
 
-          let timerBarWidth = map(timerDuration, 0, 600, 0, 8000);
+          if (frameCount % 1 === 0) { barTimerNumber--;};
+          
+          let timerBarWidth = map(barTimerNumber, 0, barTimerNumberOG, 0, 800);
 
           if (timerDuration > 30) {
             fill(255);
@@ -725,7 +735,11 @@
           // Timer number 
           textAlign(RIGHT);
 
-          text(`${timerDuration}`, windowWidth/2-415, windowHeight/2-280);
+          if (timerDuration < 10) {
+            text(`0${timerDuration}`, windowWidth/2-415, windowHeight/2-280);
+          } else {
+            text(`${timerDuration}`, windowWidth/2-415, windowHeight/2-280);
+          }
           
           //Hourglass
           fill(255);
@@ -779,20 +793,20 @@
           textAlign(RIGHT);
           text(`${actualTotal}`, (windowWidth*11/12)+100, windowHeight - 25);
           
-          if (timerDuration < 1) { // Reset to 30 for final -----
-              if (levelCounter < 3) {
+          console.log(levelCounter);
+          if (barTimerNumber < 1) { 
+              if (levelCounter === 2) {
+                  pauseTimer();
                   game.state = GameState.Level2;
-                  levelCounter++;
               }
-              else if (levelCounter < 4) {
+              else if (levelCounter === 3) {
+                pauseTimer();
                 game.state = GameState.Level3;
-                levelCounter++;
               }
-              else if (levelCounter < 5) {
+              else if (levelCounter === 4) {
                 //Last pausing of gmme
                 pauseTimer();
                 game.state = GameState.GameOver;
-                levelCounter++;
               }
           }
   
@@ -960,8 +974,8 @@
                       pauseTimer();
                   }
                   
-                  // Check if there are more questions
-                  if (currentQuestion === questions.length && (levelCounter < 5)) {
+                  // Check if there are more questions 
+                  if (currentQuestion === questions.length) { // && levelCounter < 5
                   // Display final score];
                   pauseTimer();
                   game.state = GameState.GameOver;
@@ -1146,12 +1160,13 @@
       function startTimer() {
         timer = setInterval(updateTimer, 1000);
         isTimerActive = true;
-        // timerActive = true;
         console.log("timer started");
       }
 
       function resetTimer() {
         timerDuration = game.maxTime;
+        barTimerNumberOG = timerDuration * 60;
+        barTimerNumber = barTimerNumberOG;
         isTimerActive = false;
         console.log("timer reset");
       }
@@ -1173,8 +1188,6 @@
         console.log(timerDuration);
       
         if (timerDuration === 0) {
-          clearInterval(timer);
-
-          resetTimer();
+          pauseTimer();
         }
       }
