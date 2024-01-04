@@ -626,12 +626,6 @@
       }
       
       function resetGame() {
-<<<<<<< Updated upstream
-        reset();
-
-=======
-        
->>>>>>> Stashed changes
         
         highestScore = 0;
         currentQuestion = 0;
