@@ -502,6 +502,7 @@
       // Music
       let backgroundMusic;
 
+      // Images
       let backgroundImg, levelBackground, triviaBackground,
           galaxyBackground, laserBackground, playAGbackground,
           duskBackground, startBackground;
@@ -597,7 +598,7 @@
         playAgainButton.size(100,30);
         playAgainButton.hide();
 
-        backgroundMusic.loop();
+        
       }
       
       function levelReset() {
@@ -655,7 +656,12 @@
         toggleHintButton();
         toggleOtherButton();
 
-        if (gameIsOver) {
+        if (!backgroundMusic.isPlaying() && !gameIsOver) {
+          backgroundMusic.play();
+          userStartAudio();
+        }
+
+        if (gameIsOver && backgroundMusic.isPlaying()) {  
           backgroundMusic.stop();
         }
 
