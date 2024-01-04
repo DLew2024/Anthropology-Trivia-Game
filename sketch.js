@@ -561,7 +561,7 @@
         triviaBackground = loadImage('Images/Trivia-game.jpg');
         galaxyBackground = loadImage('Images/Galaxy.jpg');
         laserBackground = loadImage('Images/Lasers.jpg');
-        playAGbackground = loadImage('Images/PlayAG.jpg');
+        playAGbackground = loadImage('Images/PlayAg.jpg');
         duskBackground = loadImage('Images/Dusk.jpg');
         startBackground = loadImage('Images/Start.jpg')
 
