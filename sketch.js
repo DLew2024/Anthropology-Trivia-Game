@@ -721,7 +721,7 @@
           stroke(0);
           rect(windowWidth/2-400, windowHeight/2-300, 800, 20, 20);
 
-          if (frameCount % 1 === 0) { barTimerNumber--;};
+          barTimerNumber -= 2;
           
           let timerBarWidth = map(barTimerNumber, 0, barTimerNumberOG, 0, 800);
 
