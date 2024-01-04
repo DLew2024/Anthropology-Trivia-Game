@@ -1,6 +1,6 @@
-# CSC4243Project
+# Anthropology Trivia Game
 
-## A p5.js-based Anthropology Trivia Game that explores several layers of questions to get users to try to beat a high score of 8000. Based on Netflix: Triviaverse.
+### A p5.js-based Anthropology Trivia Game that explores several layers of questions to get users to try to beat a high score of 8000. Based on Netflix: Triviaverse.
 
 Paragraph
 
