@@ -5,7 +5,7 @@
 Welcome to 
 
 ## Watch the full video of how it works 
-<a href="" target="_blank"
+<a href="https://youtu.be/iRj1L8X6HO0" target="_blank">
 
 ## How to install and use 
 
