@@ -29,5 +29,5 @@ issue you created, squash commits, and send it to me!!
 2. I would like the answer text to turn green if selected right.
 3. Alter the "Hint" button to look more modern.
 4. Make the page more responsive and not shift if the window gets bigger or smaller.
-5. Music is sometimes buggy to get to the start.
-6. Timer bar issue should be fixed once deployment deploys the latest commit.
+
+# To Update and Redeploy this project you must create a branch withe desired changes go to GitHub pages and deploy that specific branch and not the main branch. 
